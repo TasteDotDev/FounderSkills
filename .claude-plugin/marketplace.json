@@ -6,7 +6,7 @@
   "plugins": [{
     "name": "founder-skills",
     "description": "523 business frameworks as slash commands — strategy, finance, marketing, leadership, and 11 more categories",
-    "source": ".",
+    "source": "./skills",
     "category": "productivity",
     "homepage": "https://github.com/TasteDotDev/FounderSkills"
   }]
