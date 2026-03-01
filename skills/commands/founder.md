@@ -1,5 +1,5 @@
 ---
-description: "Analyzes any business problem with intellectual honesty — selects the right frameworks from 523 options, applies them with real analysis, surfaces assumptions, and proposes ways to validate before committing. No buzzwords."
+description: "Your AI business advisor. Describe any problem, get the right frameworks applied."
 argument-hint: [describe your business problem or question]
 ---
 

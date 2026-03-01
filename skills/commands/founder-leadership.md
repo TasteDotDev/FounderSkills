@@ -1,5 +1,5 @@
 ---
-description: "Apply leadership frameworks — Founder Mode, Situational Leadership, Radical Candor, Servant Leadership, and 28+ more — to develop leadership skills and manage teams effectively."
+description: "33 leadership frameworks: Founder Mode, Radical Candor, GROW Model"
 argument-hint: [framework-name] [your business context]
 ---
 

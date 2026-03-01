@@ -1,5 +1,5 @@
 ---
-description: "Apply decision-making frameworks — Decision Matrix, Cynefin Framework, Pre-Mortem Analysis, Cost-Benefit Analysis, and 34+ more — to make better decisions under uncertainty."
+description: "39 decision frameworks: Decision Matrix, Cynefin, Pre-Mortem, OODA"
 argument-hint: [framework-name] [your business context]
 ---
 

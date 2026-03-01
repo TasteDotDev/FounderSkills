@@ -1,5 +1,5 @@
 ---
-description: "Apply sales frameworks — Cold Email Framework, Land and Expand, Product-Led Sales, MEDDIC, Challenger Sale, and 24+ more — to qualify deals, build pipeline, and close revenue."
+description: "30 sales frameworks: Cold Email, MEDDIC, Land & Expand, Challenger"
 argument-hint: [framework-name] [your business context]
 ---
 

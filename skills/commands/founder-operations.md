@@ -1,5 +1,5 @@
 ---
-description: "Apply operations and project management frameworks — Risk Register, Project Health Check, Scope Control, Critical Path, Post-Mortem, Lean, Six Sigma, and 25+ more — to keep projects on track and improve processes."
+description: "25 ops frameworks: Lean, Six Sigma, Theory of Constraints, Kaizen"
 argument-hint: [framework-name] [your business context]
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: "Apply negotiation frameworks — BATNA Analysis, Harvard Principled Negotiation, Anchoring Strategy, and 18+ more — to negotiate deals and reach better agreements."
+description: "22 negotiation frameworks: BATNA, Harvard Method, Anchoring, ZOPA"
 argument-hint: [framework-name] [your business context]
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: "Apply innovation frameworks — Superhuman PMF Engine, Continuous Discovery, Amazon Working Backwards, AI-First Product Design, AI Agent Framework, and 40+ more — to generate ideas, validate concepts, and build products."
+description: "50 innovation frameworks: Superhuman PMF, Amazon PR/FAQ, RICE/ICE"
 argument-hint: [framework-name] [your business context]
 ---
 

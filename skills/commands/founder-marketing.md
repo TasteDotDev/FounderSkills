@@ -1,5 +1,5 @@
 ---
-description: "Apply marketing and growth frameworks — Product-Led Growth, Build in Public, TikTok/Short-Form Growth, Viral Content, Community-Led Growth, Dark Social, Growth Loops, and 40+ more — to build go-to-market strategies, optimize funnels, and grow your business."
+description: "54 marketing frameworks: PLG, Build in Public, TikTok Growth, Dark Social"
 argument-hint: [framework-name] [your business context]
 ---
 

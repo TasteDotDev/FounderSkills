@@ -1,5 +1,5 @@
 ---
-description: "Apply communication frameworks — Pyramid Principle, SCQA, Storytelling, Elevator Pitch, Crisis Communication, and 33+ more — to craft compelling messages and communicate effectively."
+description: "38 comms frameworks: Pyramid Principle, SCQA, Elevator Pitch"
 argument-hint: [framework-name] [your business context]
 ---
 

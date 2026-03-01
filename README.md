@@ -1,7 +1,7 @@
 <p align="center">
   <h1 align="center">Founder Skills</h1>
   <p align="center">
-    <strong>523 business frameworks. One slash command. Zero MBA required.</strong>
+    <strong>523 business frameworks. One slash command. Instant answers.</strong>
   </p>
   <p align="center">
     <a href="#quick-start">Quick Start</a> &bull;
@@ -88,28 +88,28 @@ That's it. `/founder` figures out you need Four Fits + Growth Accounting + Unit 
 
 ---
 
-## All Skills
+## All Commands
 
-Go direct to a category when you know what you need, or let `/founder` route for you.
+`/founder` handles everything. Go direct to a category only when you know exactly what you need.
 
-| Command | Frameworks | What it does |
-|:--------|:----------:|:-------------|
-| [`/founder`](./skills/founder/SKILL.md) | **523** | **The brain.** Analyzes any problem and picks the right frameworks. |
-| [`/strategy`](./skills/strategy/SKILL.md) | 48 | Porter's Five Forces, Blitzscaling, Wardley Maps, Cold Start, AI GTM |
-| [`/marketing`](./skills/marketing/SKILL.md) | 54 | PLG Flywheel, Build in Public, TikTok Growth, Dark Social, Viral Content |
-| [`/innovation`](./skills/innovation/SKILL.md) | 50 | Superhuman PMF Engine, Amazon PR/FAQ, Continuous Discovery, RICE/ICE |
-| [`/finance`](./skills/finance/SKILL.md) | 46 | Sequoia Pitch Deck, YC Seed Deck, SAFE Notes, Growth Accounting |
-| [`/organization`](./skills/organization/SKILL.md) | 40 | Async-First Culture, Team Topologies, Kotter's 8-Step Change |
-| [`/decision-making`](./skills/decision-making/SKILL.md) | 39 | Decision Matrix, Cynefin, Pre-Mortem, OODA Loop |
-| [`/communication`](./skills/communication/SKILL.md) | 38 | Pyramid Principle, SCQA, Elevator Pitch, Crisis Comms |
-| [`/productivity`](./skills/productivity/SKILL.md) | 34 | GTD, Deep Work, OKRs, Time Blocking, Atomic Habits |
-| [`/leadership`](./skills/leadership/SKILL.md) | 33 | Founder Mode, Radical Candor, Situational Leadership |
-| [`/sales`](./skills/sales/SKILL.md) | 30 | Cold Email, MEDDIC, Land & Expand, Product-Led Sales |
-| [`/design`](./skills/design/SKILL.md) | 27 | Design Thinking, UX Research, Service Blueprint |
-| [`/operations`](./skills/operations/SKILL.md) | 25 | Lean, Six Sigma, Theory of Constraints, Kaizen |
-| [`/mental-models`](./skills/mental-models/SKILL.md) | 23 | First Principles, Inversion, Second-Order Thinking |
-| [`/negotiation`](./skills/negotiation/SKILL.md) | 22 | BATNA, Harvard Method, Anchoring, ZOPA |
-| [`/psychology`](./skills/psychology/SKILL.md) | 14 | Nudge Theory, Cognitive Bias Audit, Flow State |
+| Command | # | Frameworks |
+|:--------|:-:|:-----------|
+| **`/founder`** | **523** | **The brain. Picks the right frameworks for you.** |
+| `/founder-strategy` | 48 | Porter, Blitzscaling, Wardley Maps, Cold Start, AI GTM |
+| `/founder-marketing` | 54 | PLG, Build in Public, TikTok Growth, Dark Social |
+| `/founder-innovation` | 50 | Superhuman PMF, Amazon PR/FAQ, RICE/ICE |
+| `/founder-finance` | 46 | Sequoia Deck, SAFE Notes, Growth Accounting |
+| `/founder-organization` | 40 | Async-First, Team Topologies, Kotter Change |
+| `/founder-decision-making` | 39 | Decision Matrix, Cynefin, Pre-Mortem, OODA |
+| `/founder-communication` | 38 | Pyramid Principle, SCQA, Elevator Pitch |
+| `/founder-productivity` | 34 | GTD, Deep Work, OKRs, Atomic Habits |
+| `/founder-leadership` | 33 | Founder Mode, Radical Candor, GROW Model |
+| `/founder-sales` | 30 | Cold Email, MEDDIC, Land & Expand |
+| `/founder-design` | 27 | Design Thinking, UX Research, Service Blueprint |
+| `/founder-operations` | 25 | Lean, Six Sigma, Theory of Constraints |
+| `/founder-mental-models` | 23 | First Principles, Inversion, Second-Order Thinking |
+| `/founder-negotiation` | 22 | BATNA, Harvard Method, Anchoring |
+| `/founder-psychology` | 14 | Nudge Theory, Cognitive Bias Audit, Flow State |
 
 ---
 

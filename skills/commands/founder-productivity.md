@@ -1,5 +1,5 @@
 ---
-description: "Apply productivity frameworks — GTD, Deep Work, Time Blocking, OKRs, Sprint Planning, and 30+ more — to manage time, set goals, and build productive habits."
+description: "34 productivity frameworks: GTD, Deep Work, OKRs, Atomic Habits"
 argument-hint: [framework-name] [your business context]
 ---
 

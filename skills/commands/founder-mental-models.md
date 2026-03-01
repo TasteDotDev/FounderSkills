@@ -1,5 +1,5 @@
 ---
-description: "Apply mental models — First Principles Thinking, Inversion, Second-Order Thinking, Circle of Competence, and 18+ more — to sharpen thinking and solve problems."
+description: "23 mental models: First Principles, Inversion, Second-Order Thinking"
 argument-hint: [framework-name] [your business context]
 ---
 
