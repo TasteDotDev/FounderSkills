@@ -10,8 +10,26 @@ Includes modern frameworks from **Reforge, a16z, Y Combinator, Sequoia, First Ro
 
 ### Claude Code (recommended)
 
+**Option 1: Install via marketplace plugin** (easiest)
+
+In Claude Code, run:
+
+```
+/plugins marketplace TasteDotDev/FounderSkills
+```
+
+Then install the `founder-skills` plugin when prompted. This registers the marketplace and installs all 16 skills as slash commands. Updates are managed automatically.
+
+To see installed plugins:
+
+```
+/plugins
+```
+
+**Option 2: Install as skills manually** (git clone)
+
 ```bash
-# Install as a Claude Code skill (works across all projects)
+# Install globally (works across all projects)
 git clone https://github.com/TasteDotDev/FounderSkills ~/.claude/skills/founder-skills
 
 # Or for a specific project only
