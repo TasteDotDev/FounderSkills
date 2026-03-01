@@ -1,81 +1,80 @@
-# Founder Skills
+<p align="center">
+  <h1 align="center">Founder Skills</h1>
+  <p align="center">
+    <strong>523 business frameworks. One slash command. Zero MBA required.</strong>
+  </p>
+  <p align="center">
+    <a href="#quick-start">Quick Start</a> &bull;
+    <a href="#the-founder-command">The /founder Command</a> &bull;
+    <a href="#all-skills">All Skills</a> &bull;
+    <a href="#multi-platform">Multi-Platform</a>
+  </p>
+</p>
 
-**523 AI-powered business frameworks** for founders and product managers — strategy, finance, leadership, growth, and behavioral science.
+---
 
-Works with **Claude Code**, **OpenAI GPTs/Assistants**, **Gemini Gems/API**, and as **standalone prompts**.
+You know that thing where you're staring at a business problem at 2am and thinking *"there's probably a framework for this"*?
 
-Includes modern frameworks from **Reforge, a16z, Y Combinator, Sequoia, First Round Capital**, and growth leaders at **Uber, Airbnb, Stripe, Datadog, and Figma**. Plus AI-era frameworks for agent design, AI GTM, and AI pricing.
+There are 523 of them. And now they live in your terminal.
 
-## Quick start
+**Founder Skills** gives you instant access to the best thinking from **Porter, Christensen, Reid Hoffman, Brian Balfour, Teresa Torres, Paul Graham**, and dozens more — as AI-powered slash commands that actually apply the frameworks to *your* specific situation. Not generic advice. Not Wikipedia summaries. Real analysis, with assumptions called out and recommendations you can test.
 
-### Claude Code (recommended)
+Works with **Claude Code**, **OpenAI**, **Gemini**, and any LLM.
 
-**Option 1: Install via marketplace plugin** (easiest)
+> *"Like having McKinsey, YC, and a16z in your terminal, except they give you straight answers and don't charge $500/hr."*
 
-In Claude Code, run:
+---
+
+## Quick Start
+
+### Claude Code
+
+**One command. That's it.**
 
 ```
 /plugins marketplace TasteDotDev/FounderSkills
 ```
 
-Then install the `founder-skills` plugin when prompted. This registers the marketplace and installs all 16 skills as slash commands. Updates are managed automatically.
+Install the `founder-skills` plugin when prompted. Done. You now have 16 slash commands and 523 frameworks.
 
-To see installed plugins:
+Check what's installed anytime:
 
 ```
 /plugins
 ```
 
-**Option 2: Install as skills manually** (git clone)
+<details>
+<summary><strong>Prefer git clone?</strong></summary>
 
 ```bash
-# Install globally (works across all projects)
+# Global install (all projects)
 git clone https://github.com/TasteDotDev/FounderSkills ~/.claude/skills/founder-skills
 
-# Or for a specific project only
+# Project-only install
 git clone https://github.com/TasteDotDev/FounderSkills .claude/skills/founder-skills
 ```
 
-Then use slash commands:
+</details>
+
+**Now try it:**
 
 ```
 /founder We're a 50-person B2B SaaS doing $5M ARR, growth slowed from 3x to 1.5x
-/strategy swot-analysis for a B2B SaaS entering the European market
-/finance analyze unit economics for our marketplace startup
-/innovation
 ```
 
-### OpenAI (GPTs & Assistants)
+That's it. `/founder` figures out you need Four Fits + Growth Accounting + Unit Economics, applies all three to your situation, and gives you a prioritized action plan with validation steps. No framework selection needed.
 
-```bash
-# Generate platform-specific files
-git clone https://github.com/TasteDotDev/FounderSkills
-cd FounderSkills
-python3 build.py
-```
+---
 
-**GPTs**: Upload `dist/openai/gpts/<category>/instructions.md` as the GPT instructions and `knowledge/frameworks.md` as a knowledge file.
+## The `/founder` Command
 
-**Assistants API**: Use the config in `dist/openai/assistants/<category>.json` and upload `files/<category>-frameworks.md` to a vector store.
+`/founder` is the one command to rule them all. Describe any business problem in plain English and it will:
 
-### Gemini (Gems & API)
-
-**Gems**: Upload `dist/gemini/gems/<category>/instructions.md` as the Gem instructions and `knowledge/frameworks.md` as a knowledge file.
-
-**API**: Use `dist/gemini/api/<category>.md` as the system prompt — it includes all framework details inline.
-
-### Standalone
-
-Individual framework prompts in `dist/standalone/<category>/<framework>.md` — self-contained, works with any LLM.
-
-## The `/founder` master skill
-
-[`/founder`](./skills/founder/SKILL.md) is your **AI business consultant**. Describe any business problem and it will:
-
-1. **Diagnose** — identify the problem type, scope, and missing context
-2. **Select** — pick the 2-4 best frameworks from 523 options across 15 categories
-3. **Apply** — run each framework end-to-end with full structure, no shortcuts
-4. **Synthesize** — combine insights into a prioritized action plan with timelines
+1. **Diagnose** what you're actually dealing with (not what you think you're dealing with)
+2. **Select** the 2-4 best frameworks from 523 options
+3. **Apply** each one with full rigor — every section, every dimension, no shortcuts
+4. **Challenge** its own analysis (devil's advocate, assumption stress-test, pre-mortem)
+5. **Synthesize** into a prioritized action plan with specific validation gates
 
 ```
 /founder Should we pivot from B2C to B2B?
@@ -85,37 +84,135 @@ Individual framework prompts in `dist/standalone/<category>/<framework>.md` — 
 /founder How will AI agents disrupt our industry in the next 3 years?
 ```
 
-No need to know which framework to use. `/founder` handles that for you.
+**The secret sauce:** Every analysis ends with an assumptions table and a "here's how to test this before committing" section. Because the honest answer to most strategy questions is *"it depends, and here's how to find out."*
 
-## Skills (523 frameworks across 15 categories)
+---
 
-| Skill | Frameworks | Examples |
-|-------|-----------|----------|
-| [`/founder`](./skills/founder/SKILL.md) | **all 523** | **Master skill — analyzes your problem and applies the right frameworks automatically** |
-| [`/communication`](./skills/communication/SKILL.md) | 38 | Pyramid Principle, SCQA, Elevator Pitch, Storytelling, Crisis Comms |
-| [`/decision-making`](./skills/decision-making/SKILL.md) | 39 | Decision Matrix, Cynefin, Pre-Mortem, Eisenhower Matrix, OODA Loop |
-| [`/design`](./skills/design/SKILL.md) | 27 | Design Thinking, UX Research, Service Blueprint, Accessibility Audit |
-| [`/finance`](./skills/finance/SKILL.md) | 46 | Sequoia Pitch Deck, YC Seed Deck, SAFE Notes, Growth Accounting, AI Pricing, Unit Economics |
-| [`/innovation`](./skills/innovation/SKILL.md) | 50 | Superhuman PMF Engine, AI Agent Framework, Continuous Discovery, Amazon PR/FAQ, RICE/ICE |
-| [`/leadership`](./skills/leadership/SKILL.md) | 33 | Founder Mode, Situational Leadership, Radical Candor, Servant Leadership, GROW Model |
-| [`/marketing`](./skills/marketing/SKILL.md) | 54 | PLG Flywheel, Build in Public, TikTok Growth, Viral Content, Community-Led, Dark Social |
-| [`/mental-models`](./skills/mental-models/SKILL.md) | 23 | First Principles, Inversion, Second-Order Thinking, Occam's Razor |
-| [`/negotiation`](./skills/negotiation/SKILL.md) | 22 | BATNA, Harvard Method, Anchoring, ZOPA Analysis, Negotiation Playbook |
-| [`/operations`](./skills/operations/SKILL.md) | 25 | Lean, Six Sigma, Theory of Constraints, Kaizen, Value Stream Mapping |
-| [`/organization`](./skills/organization/SKILL.md) | 40 | Async-First Culture, McKinsey 7S, RACI Matrix, Kotter's 8-Step Change, Team Topologies |
-| [`/productivity`](./skills/productivity/SKILL.md) | 34 | GTD, Deep Work, OKRs, Time Blocking, Pomodoro, SMART Goals |
-| [`/psychology`](./skills/psychology/SKILL.md) | 14 | Nudge Theory, Cognitive Bias Audit, Flow State, Prospect Theory |
-| [`/sales`](./skills/sales/SKILL.md) | 30 | Cold Email Framework, Land & Expand, Product-Led Sales, MEDDIC, Challenger Sale |
-| [`/strategy`](./skills/strategy/SKILL.md) | 48 | SWOT, Porter's Five Forces, Blitzscaling, Four Fits, Cold Start Problem, AI GTM |
+## All Skills
 
-## Building multi-platform dist
+Go direct to a category when you know what you need, or let `/founder` route for you.
+
+| Command | Frameworks | What it does |
+|:--------|:----------:|:-------------|
+| [`/founder`](./skills/founder/SKILL.md) | **523** | **The brain.** Analyzes any problem and picks the right frameworks. |
+| [`/strategy`](./skills/strategy/SKILL.md) | 48 | Porter's Five Forces, Blitzscaling, Wardley Maps, Cold Start, AI GTM |
+| [`/marketing`](./skills/marketing/SKILL.md) | 54 | PLG Flywheel, Build in Public, TikTok Growth, Dark Social, Viral Content |
+| [`/innovation`](./skills/innovation/SKILL.md) | 50 | Superhuman PMF Engine, Amazon PR/FAQ, Continuous Discovery, RICE/ICE |
+| [`/finance`](./skills/finance/SKILL.md) | 46 | Sequoia Pitch Deck, YC Seed Deck, SAFE Notes, Growth Accounting |
+| [`/organization`](./skills/organization/SKILL.md) | 40 | Async-First Culture, Team Topologies, Kotter's 8-Step Change |
+| [`/decision-making`](./skills/decision-making/SKILL.md) | 39 | Decision Matrix, Cynefin, Pre-Mortem, OODA Loop |
+| [`/communication`](./skills/communication/SKILL.md) | 38 | Pyramid Principle, SCQA, Elevator Pitch, Crisis Comms |
+| [`/productivity`](./skills/productivity/SKILL.md) | 34 | GTD, Deep Work, OKRs, Time Blocking, Atomic Habits |
+| [`/leadership`](./skills/leadership/SKILL.md) | 33 | Founder Mode, Radical Candor, Situational Leadership |
+| [`/sales`](./skills/sales/SKILL.md) | 30 | Cold Email, MEDDIC, Land & Expand, Product-Led Sales |
+| [`/design`](./skills/design/SKILL.md) | 27 | Design Thinking, UX Research, Service Blueprint |
+| [`/operations`](./skills/operations/SKILL.md) | 25 | Lean, Six Sigma, Theory of Constraints, Kaizen |
+| [`/mental-models`](./skills/mental-models/SKILL.md) | 23 | First Principles, Inversion, Second-Order Thinking |
+| [`/negotiation`](./skills/negotiation/SKILL.md) | 22 | BATNA, Harvard Method, Anchoring, ZOPA |
+| [`/psychology`](./skills/psychology/SKILL.md) | 14 | Nudge Theory, Cognitive Bias Audit, Flow State |
+
+---
+
+## What Makes This Different
+
+**It's not a chatbot that read a business book once.** Every framework has:
+
+- A **structured expert prompt** — the AI adopts the mindset of a specialist in that exact domain
+- **Required inputs** — it asks you the right questions, not generic ones
+- **Full output structure** — every section, every dimension, no hand-waving
+- **Assumptions audit** — every analysis surfaces what it assumed and how to validate it
+- **Contrarian check** — the AI argues against its own recommendation to stress-test it
+
+The result reads like something you'd get from a top-tier strategy consultant, except it's honest about what it doesn't know.
+
+---
+
+## Highlights
+
+<table>
+<tr><td width="50%">
+
+### Growth & Strategy
+- **Blitzscaling** (Reid Hoffman)
+- **Four Fits Framework** (Brian Balfour / Reforge)
+- **Cold Start Problem** (Andrew Chen / a16z)
+- **North Star Metric** (Sean Ellis)
+- **PLG Flywheel** (Wes Bush / OpenView)
+- **Marketplace Liquidity**
+
+</td><td width="50%">
+
+### Fundraising & Finance
+- **Sequoia Pitch Deck** (the gold standard)
+- **YC Seed Deck Framework**
+- **SAFE Notes** (caps, discounts, pro rata)
+- **Growth Accounting** (Tribe Capital)
+- **Unit Economics** deep dive
+- **AI Product Pricing**
+
+</td></tr>
+<tr><td>
+
+### Modern Distribution
+- **Build in Public** (Pieter Levels, Buffer)
+- **Short-Form Video Growth** (TikTok/Reels)
+- **Cold Email Framework** (Alex Berman)
+- **Community-Led Growth**
+- **Dark Social Strategy**
+- **Creator-Led Growth**
+
+</td><td>
+
+### AI Era
+- **AI-First Product Design**
+- **AI Agent Design Framework**
+- **AI Go-To-Market Strategy**
+- **AI Product Pricing**
+- **AI Future Scenario Planning**
+
+</td></tr>
+</table>
+
+Plus classics: **Porter's Five Forces**, **Jobs To Be Done**, **Design Thinking**, **OKRs**, **SWOT** (but only when it's actually the right tool), and 470+ more.
+
+---
+
+## Multi-Platform
+
+Founder Skills works everywhere, not just Claude Code.
+
+### OpenAI (GPTs & Assistants)
 
 ```bash
-python3 build.py          # Build all platforms
-python3 build.py --clean  # Clean and rebuild
+git clone https://github.com/TasteDotDev/FounderSkills && cd FounderSkills
+python3 build.py
 ```
 
-Output structure:
+| Platform | Instructions | Framework details |
+|:---------|:------------|:-----------------|
+| **GPTs** | `dist/openai/gpts/<category>/instructions.md` | Upload `knowledge/frameworks.md` as knowledge file |
+| **Assistants** | `dist/openai/assistants/<category>.json` | Upload `files/<category>-frameworks.md` to vector store |
+
+### Gemini (Gems & API)
+
+| Platform | Instructions | Framework details |
+|:---------|:------------|:-----------------|
+| **Gems** | `dist/gemini/gems/<category>/instructions.md` | Upload `knowledge/frameworks.md` as knowledge file |
+| **API** | `dist/gemini/api/<category>.md` (all-in-one) | Included inline |
+
+### Standalone
+
+Individual self-contained prompts at `dist/standalone/<category>/<framework>.md` — copy-paste into any LLM.
+
+### Build it yourself
+
+```bash
+python3 build.py          # Build all platforms (640 files)
+python3 build.py --clean  # Clean rebuild
+```
+
+<details>
+<summary>Output structure</summary>
 
 ```
 dist/
@@ -129,99 +226,56 @@ dist/
   manifest.json
 ```
 
-Tagged releases on GitHub include pre-built `dist/` as a downloadable artifact.
+</details>
 
-## What's inside each skill
+---
 
-Every skill has two files:
+## Under the Hood
+
+Each skill has two files:
 
 ```
 skills/strategy/
-├── SKILL.md          # Main skill — instructions + framework list
-└── frameworks.md     # Detailed reference — expert prompts, inputs, when-to-use
+├── SKILL.md          # System prompt + framework catalog
+└── frameworks.md     # Detailed expert prompts for each framework
 ```
 
-- **SKILL.md** is what Claude loads when you invoke the skill. It contains the framework catalog and output standards.
-- **frameworks.md** is the detailed reference that Claude reads when applying a specific framework. It contains the expert system prompt, required inputs, and origin attribution for each framework.
+**SKILL.md** is what runs when you invoke a slash command. **frameworks.md** is the deep reference the AI reads when applying a specific framework — expert persona, required inputs, output structure, origin attribution.
 
-## What's new (modern frameworks)
+---
 
-These frameworks reflect the latest thinking from top VCs, growth leaders, and AI practitioners:
+## Standing on the Shoulders of Giants
 
-### Growth Engineering (Reforge / a16z / OpenView)
-- **Blitzscaling** — Reid Hoffman's hypergrowth framework
-- **Four Fits Framework** — Brian Balfour's growth bottleneck diagnosis
-- **North Star Metric** — Sean Ellis / Amplitude's alignment framework
-- **Cold Start Problem** — Andrew Chen's network effect launch playbook
-- **Product-Led Growth Flywheel** — OpenView/Wes Bush's PLG motion
-- **Racecar Growth Framework** — Reforge's growth initiative categorization
-- **Marketplace Liquidity** — solving chicken-and-egg for two-sided markets
+These frameworks come from decades of the best business thinking:
 
-### Modern Distribution
-- **Build in Public** — transparency-driven growth (Pieter Levels, Buffer)
-- **Short-Form Video Growth** — TikTok/Reels/Shorts strategy
-- **Viral Content Framework** — hook psychology and shareability engineering
-- **Cold Email Framework** — Alex Berman's 3C method for outbound
-- **Community-Led Growth** — community as acquisition channel
-- **Dark Social Strategy** — leveraging private sharing channels
-- **LinkedIn Growth Playbook** — B2B personal brand and lead gen
-- **Creator-Led Growth** — influencer partnerships as growth channel
+| Domain | Thinkers |
+|:-------|:---------|
+| **Strategy** | Michael Porter, Clayton Christensen, Reid Hoffman, Andrew Chen |
+| **Growth** | Brian Balfour (Reforge), Sean Ellis, Wes Bush, Elena Verna |
+| **VC / Startup** | Y Combinator, Sequoia, a16z, First Round, OpenView |
+| **Product** | Teresa Torres, Rahul Vohra, Marty Cagan, Jeff Bezos |
+| **Leadership** | Paul Graham, Kim Scott, Patrick Lencioni, Brian Chesky |
+| **AI** | Anthropic, OpenAI, a16z AI team, Kyle Poyar |
+| **Psychology** | Daniel Kahneman, Richard Thaler, Robert Cialdini |
+| **Communication** | Barbara Minto, Chip & Dan Heath, Jonah Berger |
 
-### Startup / VC
-- **Sequoia Pitch Deck Format** — the gold-standard 10-slide format
-- **YC Seed Deck Framework** — clarity-over-polish seed round deck
-- **SAFE Notes Framework** — negotiate valuation caps, discounts, pro rata
-- **Investor Data Room Checklist** — tiered document organization for due diligence
-- **Growth Accounting** — MRR decomposition (Tribe Capital / Social Capital)
-- **Usage-Based Pricing** — consumption pricing like Twilio, Snowflake, Stripe
-- **Superhuman PMF Engine** — Rahul Vohra's quantitative PMF method
+We built the prompts. They built the ideas. Credit where it's due.
 
-### Product & Sales
-- **Continuous Discovery Habits** — Teresa Torres's weekly discovery cadence
-- **Amazon Working Backwards (PR/FAQ)** — start with the press release
-- **Product-Led Sales** — PQL-based sales on top of PLG (Elena Verna)
-- **Land and Expand** — start small, grow within accounts
-- **RICE / ICE Scoring** — experiment and feature prioritization
-- **Reverse Trial** — full access → downgrade model (Airtable, Loom)
-- **Founder Mode** — Paul Graham's hands-on leadership philosophy
-
-### AI Era
-- **AI-First Product Design** — building products with AI at the core
-- **AI Agent Design Framework** — autonomous agents with tools, memory, planning
-- **AI Go-To-Market Strategy** — avoiding the wrapper trap, building AI moats
-- **AI Product Pricing** — per-seat vs. per-output vs. usage-based for AI
-- **AI Future Scenario Planning** — how AI reshapes your industry over 1/3/5 years
-
-## Output quality
-
-Every framework output follows these standards:
-
-- **Structured**: Uses the exact sections and dimensions defined by each framework
-- **Specific**: No generic filler — every point is tailored to your business context
-- **Visual**: Tables, matrices, numbered steps, and bold headers for scannability
-- **Actionable**: Ends with prioritized "So What?" recommendations
-
-## Framework origins
-
-These frameworks draw from decades of business research and modern practice, including:
-
-- **Strategy**: Michael Porter, Alexander Osterwalder, Reid Hoffman, Clayton Christensen, Andrew Chen
-- **Growth**: Brian Balfour (Reforge), Sean Ellis, Wes Bush, Elena Verna, Lenny Rachitsky
-- **VC/Startup**: Y Combinator, Sequoia Capital, a16z, First Round Capital, OpenView
-- **Product**: Teresa Torres, Rahul Vohra, Marty Cagan, Jeff Bezos (Amazon), Intercom
-- **Leadership**: Paul Graham, Patrick Lencioni, Daniel Goleman, Kim Scott, Brian Chesky
-- **AI**: Anthropic, OpenAI, a16z AI team, Kyle Poyar (OpenView)
-- **Psychology**: Daniel Kahneman, Richard Thaler, Mihaly Csikszentmihalyi, Robert Cialdini
-- **Communication**: Barbara Minto, Chip & Dan Heath, Jonah Berger
+---
 
 ## Contributing
 
-To add a new framework:
+Want to add a framework? PRs welcome.
 
-1. Add a JSON file to `server/tools/definitions/<category>/<slug>.json`
+1. Add a JSON definition to `server/tools/definitions/<category>/<slug>.json`
 2. Run the skill regeneration script
 3. Submit a PR
 
-## License
+---
 
-MIT License. Copyright (c) taste.dev
+<p align="center">
+  <strong>MIT License</strong> &bull; Copyright (c) <a href="https://taste.dev">taste.dev</a>
+</p>
+<p align="center">
+  <em>Now stop reading READMEs and go build something.</em>
+</p>
