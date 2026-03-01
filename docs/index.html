@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Founder CLI — Business Consultant in Your Terminal</title>
+  <meta name="description" content="523 business frameworks, any LLM. Install founder and get instant business analysis from your terminal.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>&#x1f9e0;</text></svg>">
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-dim: #8b949e;
+      --accent: #58a6ff;
+      --accent-dim: #1f6feb;
+      --green: #3fb950;
+      --orange: #d29922;
+      --purple: #bc8cff;
+      --red: #f85149;
+      --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --mono: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Consolas, monospace;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+    }
+    nav .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    nav .logo {
+      font-size: 1.1rem; font-weight: 700; color: var(--text);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    nav .logo span { font-size: 1.3rem; }
+    nav .links { display: flex; gap: 1.5rem; align-items: center; }
+    nav .links a { color: var(--text-dim); font-size: 0.9rem; }
+    nav .links a:hover { color: var(--text); text-decoration: none; }
+    nav .links .gh {
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+
+    /* Sections */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+    section { padding: 5rem 0; }
+    section:first-of-type { padding-top: 8rem; }
+
+    /* Hero */
+    .hero { text-align: center; padding-top: 10rem; padding-bottom: 5rem; }
+    .hero h1 {
+      font-size: 3.2rem; font-weight: 800; line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, var(--accent), var(--purple));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.25rem; color: var(--text-dim); max-width: 600px;
+      margin: 0 auto 2rem;
+    }
+    .hero-install {
+      display: inline-flex; align-items: center; gap: 0.75rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 0.8rem 1.5rem;
+      font-family: var(--mono); font-size: 1rem;
+      cursor: pointer; transition: border-color 0.2s;
+    }
+    .hero-install:hover { border-color: var(--accent); }
+    .hero-install .prompt { color: var(--green); }
+    .hero-install .copy {
+      color: var(--text-dim); font-size: 0.8rem;
+      border-left: 1px solid var(--border); padding-left: 0.75rem;
+    }
+    .hero-badges {
+      margin-top: 1.5rem; display: flex; gap: 1rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .badge {
+      font-size: 0.85rem; color: var(--text-dim);
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 0.3rem 0.8rem; border-radius: 20px;
+    }
+
+    /* Code blocks */
+    pre {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem 1.5rem;
+      overflow-x: auto; font-family: var(--mono); font-size: 0.9rem;
+      line-height: 1.7; margin: 1rem 0;
+    }
+    code {
+      font-family: var(--mono); font-size: 0.88em;
+      background: var(--surface); padding: 0.15em 0.4em;
+      border-radius: 4px;
+    }
+    pre code { background: none; padding: 0; font-size: 1em; }
+    .cmd { color: var(--green); }
+    .flag { color: var(--orange); }
+    .str { color: var(--accent); }
+    .cmt { color: var(--text-dim); }
+    .out { color: var(--text-dim); }
+
+    /* Section headers */
+    h2 {
+      font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;
+    }
+    h3 {
+      font-size: 1.3rem; font-weight: 600; margin: 2rem 0 0.8rem;
+      color: var(--text);
+    }
+    .section-desc { color: var(--text-dim); margin-bottom: 2rem; font-size: 1.05rem; }
+
+    /* Grid */
+    .grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem; margin: 1.5rem 0;
+    }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.5rem;
+    }
+    .card h4 {
+      font-size: 1rem; margin-bottom: 0.5rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .card p { color: var(--text-dim); font-size: 0.9rem; }
+
+    /* Install methods */
+    .install-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1rem;
+    }
+    .install-method {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.2rem 1.5rem;
+    }
+    .install-method .label {
+      font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase;
+      letter-spacing: 0.05em; margin-bottom: 0.5rem;
+    }
+    .install-method pre { margin: 0; border: none; padding: 0; background: none; }
+
+    /* Category list */
+    .category-list {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.6rem;
+    }
+    .category-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 1rem; background: var(--surface);
+      border: 1px solid var(--border); border-radius: 6px;
+      font-size: 0.9rem;
+    }
+    .category-item .count { color: var(--text-dim); font-size: 0.8rem; }
+
+    /* Provider logos */
+    .providers {
+      display: flex; gap: 2rem; flex-wrap: wrap;
+      align-items: center; margin: 1.5rem 0;
+    }
+    .provider {
+      display: flex; align-items: center; gap: 0.5rem;
+      color: var(--text-dim); font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem; text-align: center;
+      color: var(--text-dim); font-size: 0.85rem;
+    }
+    footer a { color: var(--text-dim); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      nav .links { gap: 1rem; }
+      section { padding: 3rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo"><span>&#x1f9e0;</span> founder</div>
+    <div class="links">
+      <a href="#install">Install</a>
+      <a href="#usage">Usage</a>
+      <a href="#frameworks">Frameworks</a>
+      <a href="#providers">Providers</a>
+      <a href="#examples">Examples</a>
+      <a href="#completion">Shell Completion</a>
+      <a href="https://github.com/TasteDotDev/FounderSkills" class="gh">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>Business consultant<br><span class="gradient">in your terminal</span></h1>
+    <p>523 business frameworks across 15 categories. Pick your LLM. Get rigorous analysis that actually helps you decide.</p>
+    <div class="hero-install" onclick="navigator.clipboard.writeText('npm i -g @taste.dev/founder')">
+      <span><span class="prompt">$</span> npm i -g @taste.dev/founder</span>
+      <span class="copy">click to copy</span>
+    </div>
+    <div class="hero-badges">
+      <span class="badge">523 frameworks</span>
+      <span class="badge">15 categories</span>
+      <span class="badge">5 LLM providers</span>
+      <span class="badge">macOS / Linux / Windows</span>
+    </div>
+  </div>
+</section>
+
+<!-- Install -->
+<section id="install">
+  <div class="container">
+    <h2>Install</h2>
+    <p class="section-desc">Pick whichever method you prefer. They all give you the same <code>founder</code> command.</p>
+
+    <div class="install-grid">
+      <div class="install-method">
+        <div class="label">npm</div>
+        <pre><code><span class="cmd">npm</span> i -g @taste.dev/founder</code></pre>
+      </div>
+      <div class="install-method">
+        <div class="label">bun</div>
+        <pre><code><span class="cmd">bun</span> add -g @taste.dev/founder</code></pre>
+      </div>
+      <div class="install-method">
+        <div class="label">homebrew</div>
+        <pre><code><span class="cmd">brew</span> install TasteDotDev/tap/founder</code></pre>
+      </div>
+      <div class="install-method">
+        <div class="label">run without installing</div>
+        <pre><code><span class="cmd">npx</span> @taste.dev/founder <span class="str">"my problem"</span></code></pre>
+      </div>
+      <div class="install-method">
+        <div class="label">curl (linux / macos)</div>
+        <pre><code><span class="cmd">curl</span> -fsSL https://raw.githubusercontent.com/TasteDotDev/FounderSkills/main/cli/packaging/install.sh | sh</code></pre>
+      </div>
+      <div class="install-method">
+        <div class="label">download binary</div>
+        <pre><code><span class="cmt"># No runtime needed. Grab from GitHub Releases:</span>
+<span class="cmt"># macOS ARM / macOS Intel / Linux x64 / Linux ARM / Windows</span>
+<a href="https://github.com/TasteDotDev/FounderSkills/releases/latest">github.com/TasteDotDev/FounderSkills/releases</a></code></pre>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- First Run -->
+<section id="setup">
+  <div class="container">
+    <h2>First Run</h2>
+    <p class="section-desc">On first use, founder walks you through picking a provider and entering your API key. Takes 30 seconds.</p>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="str">"our growth stalled at $5M ARR"</span>
+
+<span class="out">Founder CLI Setup
+
+? Choose your LLM provider
+  > Anthropic (Claude)
+    OpenAI
+    Google (Gemini)
+    OpenRouter
+    Custom (OpenAI-compatible)
+
+? Enter your API key: ****
+
+Fetching available models...
+
+? Choose a model
+  > claude-sonnet-4-6
+    claude-opus-4-6
+    claude-haiku-4-5
+
+Setup complete!</span></code></pre>
+    <p style="color: var(--text-dim); margin-top: 1rem;">Your config is saved at <code>~/.config/founder/</code>. Change it anytime with <code>founder config</code>.</p>
+  </div>
+</section>
+
+<!-- Usage -->
+<section id="usage">
+  <div class="container">
+    <h2>Usage</h2>
+    <p class="section-desc">Just describe your problem. Founder picks the right frameworks and applies them.</p>
+
+    <h3>Describe your problem</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="str">"We're a 50-person B2B SaaS at $5M ARR. Growth slowed from 3x to 1.5x."</span></code></pre>
+    <p style="color: var(--text-dim);">Founder reads your problem, selects 2-4 relevant frameworks (e.g. Four Fits, Growth Accounting, Unit Economics), loads the expert instructions for each, applies them with full rigor, then synthesizes into actionable recommendations &mdash; complete with an assumptions table and a pre-mortem.</p>
+
+    <h3>Target a specific category</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-c</span> strategy <span class="str">"entering the EU market from the US"</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-c</span> finance <span class="str">"should we raise a Series A or bootstrap?"</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-c</span> marketing <span class="str">"how to grow on TikTok as a B2B company"</span></code></pre>
+
+    <h3>Use a specific framework</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-f</span> blitzscaling <span class="str">"we're a marketplace with 10k users"</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-f</span> sequoia-pitch-deck <span class="str">"prepare our Series A deck"</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-f</span> cold-email-framework <span class="str">"outbound to enterprise CTOs"</span></code></pre>
+
+    <h3>Browse what's available</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> list                 <span class="cmt"># all 15 categories with framework counts</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> list strategy        <span class="cmt"># all 48 strategy frameworks</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> list finance          <span class="cmt"># all 46 finance frameworks</span></code></pre>
+  </div>
+</section>
+
+<!-- All Commands -->
+<section id="commands">
+  <div class="container">
+    <h2>All Commands</h2>
+    <pre><code><span class="cmd">founder</span> <span class="str">"your problem"</span>              <span class="cmt"># auto-route to best frameworks</span>
+<span class="cmd">founder</span> <span class="flag">-c</span> &lt;category&gt; <span class="str">"problem"</span>     <span class="cmt"># use a specific category</span>
+<span class="cmd">founder</span> <span class="flag">-f</span> &lt;framework&gt; <span class="str">"problem"</span>    <span class="cmt"># use a specific framework</span>
+<span class="cmd">founder</span> list                        <span class="cmt"># show all categories</span>
+<span class="cmd">founder</span> list &lt;category&gt;             <span class="cmt"># show frameworks in a category</span>
+<span class="cmd">founder</span> config                      <span class="cmt"># show current config</span>
+<span class="cmd">founder</span> config set provider openai  <span class="cmt"># change provider</span>
+<span class="cmd">founder</span> config set model gpt-5.2    <span class="cmt"># change model</span>
+<span class="cmd">founder</span> config setup                <span class="cmt"># run setup wizard again</span>
+<span class="cmd">founder</span> models                      <span class="cmt"># list models (fetched live from your provider)</span>
+<span class="cmd">founder</span> update                      <span class="cmt"># self-update to latest version</span>
+<span class="cmd">founder</span> completion zsh              <span class="cmt"># output shell completion script</span></code></pre>
+  </div>
+</section>
+
+<!-- Frameworks -->
+<section id="frameworks">
+  <div class="container">
+    <h2>523 Frameworks, 15 Categories</h2>
+    <p class="section-desc">Every framework includes expert instructions, required inputs, and a structured output format. Run <code>founder list &lt;category&gt;</code> to explore.</p>
+    <div class="category-list">
+      <div class="category-item"><span>Strategy</span><span class="count">48</span></div>
+      <div class="category-item"><span>Marketing</span><span class="count">54</span></div>
+      <div class="category-item"><span>Innovation</span><span class="count">50</span></div>
+      <div class="category-item"><span>Finance</span><span class="count">46</span></div>
+      <div class="category-item"><span>Organization</span><span class="count">40</span></div>
+      <div class="category-item"><span>Decision Making</span><span class="count">39</span></div>
+      <div class="category-item"><span>Communication</span><span class="count">38</span></div>
+      <div class="category-item"><span>Productivity</span><span class="count">34</span></div>
+      <div class="category-item"><span>Leadership</span><span class="count">33</span></div>
+      <div class="category-item"><span>Operations</span><span class="count">32</span></div>
+      <div class="category-item"><span>Sales</span><span class="count">30</span></div>
+      <div class="category-item"><span>Design</span><span class="count">27</span></div>
+      <div class="category-item"><span>Mental Models</span><span class="count">23</span></div>
+      <div class="category-item"><span>Negotiation</span><span class="count">22</span></div>
+      <div class="category-item"><span>Psychology</span><span class="count">14</span></div>
+    </div>
+
+    <h3>Example frameworks</h3>
+    <div class="grid">
+      <div class="card">
+        <h4>Blitzscaling</h4>
+        <p>Scale at lightning speed in winner-take-all markets using the 5-stage hypergrowth framework.</p>
+      </div>
+      <div class="card">
+        <h4>Sequoia Pitch Deck</h4>
+        <p>Structure your fundraise with the format that Sequoia-backed companies use.</p>
+      </div>
+      <div class="card">
+        <h4>Superhuman PMF Engine</h4>
+        <p>Measure and improve product-market fit using the "very disappointed" survey method.</p>
+      </div>
+      <div class="card">
+        <h4>Porter's Five Forces</h4>
+        <p>Analyze competitive dynamics: rivalry, new entrants, substitutes, buyer power, supplier power.</p>
+      </div>
+      <div class="card">
+        <h4>Cold Email Framework</h4>
+        <p>Write cold outbound that gets replies &mdash; structure, personalization, sequences.</p>
+      </div>
+      <div class="card">
+        <h4>AI Go-To-Market</h4>
+        <p>Launch AI products by avoiding the wrapper trap, building moats, and pricing on value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Providers -->
+<section id="providers">
+  <div class="container">
+    <h2>Works With Any LLM</h2>
+    <p class="section-desc">Bring your own API key. Switch providers anytime with <code>founder config set provider &lt;name&gt;</code>.</p>
+    <div class="grid">
+      <div class="card">
+        <h4>Anthropic</h4>
+        <p>Claude Opus 4.6, Sonnet 4.6, Haiku 4.5. Set <code>ANTHROPIC_API_KEY</code> or configure via setup.</p>
+      </div>
+      <div class="card">
+        <h4>OpenAI</h4>
+        <p>GPT-5.2, GPT-5.2 Pro, Codex. Set <code>OPENAI_API_KEY</code> or configure via setup.</p>
+      </div>
+      <div class="card">
+        <h4>Google Gemini</h4>
+        <p>Gemini 3.1 Pro, 3 Flash, 2.5 Flash/Pro. Set <code>GOOGLE_API_KEY</code> or configure via setup.</p>
+      </div>
+      <div class="card">
+        <h4>OpenRouter</h4>
+        <p>Access any model through one API. Set <code>OPENROUTER_API_KEY</code> or configure via setup.</p>
+      </div>
+      <div class="card">
+        <h4>Custom / Self-hosted</h4>
+        <p>Any OpenAI-compatible endpoint. Ollama, vLLM, Together, Groq &mdash; point it at your base URL.</p>
+      </div>
+    </div>
+    <p style="color: var(--text-dim); margin-top: 1rem;">Env vars are auto-detected. If <code>ANTHROPIC_API_KEY</code> is set, founder uses Anthropic automatically &mdash; no setup needed.</p>
+  </div>
+</section>
+
+<!-- Examples -->
+<section id="examples">
+  <div class="container">
+    <h2>Real Examples</h2>
+    <p class="section-desc">Here's what founder actually does when you ask it something.</p>
+
+    <h3>Growth stall diagnosis</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="str">"We're a 50-person B2B SaaS doing $5M ARR. Growth slowed from 3x to 1.5x."</span>
+
+<span class="out">Let me dig into this. A growth stall at $5M ARR usually means one of four
+things: market saturation, PMF decay, GTM inefficiency, or org scaling
+friction. Let me pull up the right frameworks to figure out which one.</span>
+
+<span class="cmt"># Founder calls applyFramework("strategy", "four-fits-framework")
+# Founder calls applyFramework("finance", "growth-accounting")
+# Founder calls applyFramework("finance", "unit-economics")</span>
+
+<span class="out">## Four Fits Analysis
+Your growth stall pattern suggests a Channel-Model fit problem...
+
+## Growth Accounting
+Breaking down your growth: new MRR ~$80K, expansion ~$20K, churn ~$45K...
+
+## Assumptions
+| # | Assumption        | Confidence | If wrong...              | How to validate          |
+|---|-------------------|------------|--------------------------|--------------------------|
+| 1 | Monthly churn ~3% | Medium     | Changes entire diagnosis | Pull actual churn data   |
+| 2 | CAC ~$500         | Low        | Unit economics may work  | Check last 90 days spend |
+
+## What to do this week
+1. Interview 10 recently churned customers (test if churn is product or price)
+2. Calculate actual CAC payback from last quarter's data
+3. Only then decide whether this is a retention or acquisition problem</span></code></pre>
+
+    <h3>Direct framework application</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-f</span> lean-canvas <span class="str">"a vibe marketing platform for small businesses"</span>
+
+<span class="out">## Lean Canvas: Vibe Marketing Platform
+
+### Problem
+1. Small businesses can't afford agencies for cohesive brand presence
+2. Managing website + social + analytics across tools is fragmented
+3. No way to maintain consistent "vibe" / brand feel across channels
+
+### Customer Segments
+- Solo founders and freelancers ($0-50K marketing budget)
+- Small businesses 2-20 employees with no dedicated marketer
+...</span></code></pre>
+
+    <h3>Category-focused analysis</h3>
+    <pre><code><span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-c</span> negotiation <span class="str">"negotiating our Series A term sheet, $8M pre"</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-c</span> sales <span class="str">"cold outbound to enterprise CFOs isn't converting"</span>
+<span class="prompt">$</span> <span class="cmd">founder</span> <span class="flag">-c</span> leadership <span class="str">"transitioning from 15 to 40 people, losing culture"</span></code></pre>
+  </div>
+</section>
+
+<!-- Shell Completion -->
+<section id="completion">
+  <div class="container">
+    <h2>Shell Completion</h2>
+    <p class="section-desc">Tab completion for commands, categories, and framework names.</p>
+    <pre><code><span class="cmt"># Bash — add to ~/.bashrc</span>
+<span class="cmd">eval</span> <span class="str">"$(founder completion bash)"</span>
+
+<span class="cmt"># Zsh — add to ~/.zshrc</span>
+<span class="cmd">eval</span> <span class="str">"$(founder completion zsh)"</span>
+
+<span class="cmt"># Fish — save to ~/.config/fish/completions/founder.fish</span>
+<span class="cmd">founder</span> completion fish > ~/.config/fish/completions/founder.fish</code></pre>
+
+    <p style="color: var(--text-dim); margin-top: 1rem;">Then press Tab to autocomplete:</p>
+    <pre><code><span class="prompt">$</span> founder list str<span class="out">&lt;TAB&gt;</span>  →  founder list strategy
+<span class="prompt">$</span> founder -f port<span class="out">&lt;TAB&gt;</span>  →  founder -f porters-five-forces
+<span class="prompt">$</span> founder config <span class="out">&lt;TAB&gt;</span>  →  show  set  setup</code></pre>
+  </div>
+</section>
+
+<!-- How it works -->
+<section id="how">
+  <div class="container">
+    <h2>How It Works</h2>
+    <div class="grid">
+      <div class="card">
+        <h4>1. You describe your problem</h4>
+        <p>In plain language. No special syntax. Just tell it what you're dealing with.</p>
+      </div>
+      <div class="card">
+        <h4>2. Founder picks frameworks</h4>
+        <p>The AI reads your problem, decides which 2-4 frameworks fit, and loads the expert instructions for each.</p>
+      </div>
+      <div class="card">
+        <h4>3. Deep analysis, not platitudes</h4>
+        <p>Each framework is applied with full rigor &mdash; every section, specific to your situation, with uncertainty flagged.</p>
+      </div>
+      <div class="card">
+        <h4>4. Assumptions surfaced</h4>
+        <p>Every analysis ends with an assumptions table: what was assumed, confidence level, what breaks if wrong, how to validate.</p>
+      </div>
+      <div class="card">
+        <h4>5. Adversarial self-check</h4>
+        <p>Devil's advocate, stress-tested assumptions, and a pre-mortem imagining how the strategy could fail.</p>
+      </div>
+      <div class="card">
+        <h4>6. Actionable next steps</h4>
+        <p>Concrete experiments to run this week, with specific pass/fail criteria before committing resources.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Config -->
+<section id="config">
+  <div class="container">
+    <h2>Configuration</h2>
+    <p class="section-desc">Config is stored at <code>~/.config/founder/config.json</code>. Env vars take priority.</p>
+
+    <h3>Environment variables (auto-detected)</h3>
+    <pre><code><span class="cmt"># Set any of these and founder auto-detects the provider:</span>
+<span class="cmd">export</span> ANTHROPIC_API_KEY=sk-ant-...
+<span class="cmd">export</span> OPENAI_API_KEY=sk-...
+<span class="cmd">export</span> GOOGLE_GENERATIVE_AI_API_KEY=AIza...
+<span class="cmd">export</span> OPENROUTER_API_KEY=sk-or-...</code></pre>
+
+    <h3>Config commands</h3>
+    <pre><code><span class="cmd">founder</span> config                      <span class="cmt"># show current config</span>
+<span class="cmd">founder</span> config set provider anthropic <span class="cmt"># switch provider</span>
+<span class="cmd">founder</span> config set model gpt-5.2     <span class="cmt"># switch model</span>
+<span class="cmd">founder</span> config set apiKey sk-...      <span class="cmt"># set API key</span>
+<span class="cmd">founder</span> config setup                  <span class="cmt"># re-run interactive setup</span>
+<span class="cmd">founder</span> models                        <span class="cmt"># fetch & list available models</span></code></pre>
+
+    <h3>Priority order</h3>
+    <p style="color: var(--text-dim);">Environment variables &gt; config file &gt; interactive setup wizard</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>Built by <a href="https://taste.dev">taste.dev</a> &mdash; <a href="https://github.com/TasteDotDev/FounderSkills">GitHub</a> &mdash; <a href="https://www.npmjs.com/package/@taste.dev/founder">npm</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
