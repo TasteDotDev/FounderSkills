@@ -1,12 +1,12 @@
 import prompts from 'prompts';
 import chalk from 'chalk';
 import { setConfig, type Provider } from '../config.js';
-import { DEFAULT_MODELS, RECOMMENDED_MODELS } from '../providers.js';
+import { DEFAULT_MODELS } from '../providers.js';
 
 const PROVIDERS: { title: string; value: Provider; description: string }[] = [
-  { title: 'Anthropic (Claude)', value: 'anthropic', description: 'claude-sonnet-4, claude-opus-4' },
-  { title: 'OpenAI', value: 'openai', description: 'gpt-4o, o1' },
-  { title: 'Google (Gemini)', value: 'google', description: 'gemini-2.0-flash, gemini-2.5-pro' },
+  { title: 'Anthropic (Claude)', value: 'anthropic', description: 'Claude Opus, Sonnet, Haiku' },
+  { title: 'OpenAI', value: 'openai', description: 'GPT, o-series, Codex' },
+  { title: 'Google (Gemini)', value: 'google', description: 'Gemini Pro, Flash' },
   { title: 'OpenRouter', value: 'openrouter', description: 'Any model via openrouter.ai' },
   { title: 'Custom (OpenAI-compatible)', value: 'custom', description: 'Any OpenAI-compatible API' },
 ];
@@ -55,19 +55,18 @@ export async function runSetup(): Promise<void> {
     }
   }
 
-  // Optional model selection
-  const recommended = RECOMMENDED_MODELS[provider] ?? [];
-  const defaultModel = DEFAULT_MODELS[provider] ?? '';
+  // Fetch available models from the provider's API
+  console.log(chalk.dim('\nFetching available models...'));
+  const models = await fetchModels(provider, apiKey);
 
-  if (recommended.length > 0) {
+  if (models.length > 0) {
     const { model } = await prompts({
       type: 'select',
       name: 'model',
-      message: 'Choose a model (or keep default)',
+      message: 'Choose a model',
       choices: [
-        { title: `Default (${defaultModel})`, value: '' },
-        ...recommended.map(m => ({ title: m, value: m })),
-        { title: 'Custom model ID', value: '__custom__' },
+        ...models.map(m => ({ title: m, value: m })),
+        { title: 'Enter custom model ID', value: '__custom__' },
       ],
     });
 
@@ -83,8 +82,101 @@ export async function runSetup(): Promise<void> {
     } else if (model) {
       setConfig('model', model);
     }
+  } else {
+    console.log(chalk.dim(`Could not fetch models. Using default: ${DEFAULT_MODELS[provider]}`));
+    const { customModel } = await prompts({
+      type: 'text',
+      name: 'customModel',
+      message: 'Enter a model ID (or press Enter for default)',
+    });
+    if (customModel) {
+      setConfig('model', customModel);
+    }
   }
 
   console.log(chalk.green('\nSetup complete!'));
   console.log(chalk.dim(`Config saved. Run ${chalk.cyan('founder config show')} to review.\n`));
+}
+
+export { fetchModels as fetchModelsForProvider };
+
+async function fetchModels(provider: Provider, apiKey: string): Promise<string[]> {
+  try {
+    switch (provider) {
+      case 'anthropic':
+        return await fetchAnthropicModels(apiKey);
+      case 'openai':
+        return await fetchOpenAIModels(apiKey);
+      case 'google':
+        return await fetchGoogleModels(apiKey);
+      case 'openrouter':
+        return await fetchOpenRouterModels(apiKey);
+      default:
+        return [];
+    }
+  } catch {
+    return [];
+  }
+}
+
+async function fetchAnthropicModels(apiKey: string): Promise<string[]> {
+  const res = await fetch('https://api.anthropic.com/v1/models', {
+    headers: {
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+    },
+  });
+  if (!res.ok) return [];
+  const data = await res.json() as { data?: { id: string }[] };
+  const models = (data.data ?? []).map(m => m.id);
+  // Sort: prefer claude models, newest first
+  return models
+    .filter(m => m.startsWith('claude-'))
+    .sort((a, b) => b.localeCompare(a))
+    .slice(0, 10);
+}
+
+async function fetchOpenAIModels(apiKey: string): Promise<string[]> {
+  const res = await fetch('https://api.openai.com/v1/models', {
+    headers: { 'Authorization': `Bearer ${apiKey}` },
+  });
+  if (!res.ok) return [];
+  const data = await res.json() as { data?: { id: string }[] };
+  const models = (data.data ?? []).map(m => m.id);
+  // Filter to chat models, sort newest first
+  const chatModels = models.filter(m =>
+    m.startsWith('gpt-') || m.startsWith('o1') || m.startsWith('o3') || m.startsWith('o4')
+  );
+  return chatModels
+    .sort((a, b) => b.localeCompare(a))
+    .slice(0, 10);
+}
+
+async function fetchGoogleModels(apiKey: string): Promise<string[]> {
+  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models?key=${apiKey}`);
+  if (!res.ok) return [];
+  const data = await res.json() as { models?: { name: string }[] };
+  const models = (data.models ?? [])
+    .map(m => m.name.replace('models/', ''))
+    .filter(m => m.startsWith('gemini-'));
+  return models
+    .sort((a, b) => b.localeCompare(a))
+    .slice(0, 10);
+}
+
+async function fetchOpenRouterModels(apiKey: string): Promise<string[]> {
+  const res = await fetch('https://openrouter.ai/api/v1/models', {
+    headers: { 'Authorization': `Bearer ${apiKey}` },
+  });
+  if (!res.ok) return [];
+  const data = await res.json() as { data?: { id: string }[] };
+  const models = (data.data ?? []).map(m => m.id);
+  // Pick top popular ones
+  const preferred = [
+    'anthropic/claude', 'openai/gpt', 'google/gemini', 'meta-llama/', 'mistralai/'
+  ];
+  return models
+    .filter(m => preferred.some(p => m.includes(p)))
+    .sort((a, b) => b.localeCompare(a))
+    .slice(0, 15);
 }

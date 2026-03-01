@@ -3,10 +3,11 @@ import chalk from 'chalk';
 import { getConfig, isConfigured, setConfig, showConfig } from './config.js';
 import { runAgent } from './agent.js';
 import { getAllCategories, getCategoryFrameworks } from './skills/loader.js';
-import { RECOMMENDED_MODELS } from './providers.js';
+import { DEFAULT_MODELS, RECOMMENDED_MODELS } from './providers.js';
 import { runSetup } from './ui/setup.js';
 import { checkForUpdate, runUpdate } from './updater.js';
 import { VERSION } from './version.js';
+import { handleCompletions, generateBashCompletion, generateZshCompletion, generateFishCompletion } from './completion.js';
 
 export function createProgram(): Command {
   const program = new Command();
@@ -104,11 +105,39 @@ export function createProgram(): Command {
 
   program
     .command('models')
-    .description('List recommended models per provider')
-    .action(() => {
-      console.log(chalk.bold('\nRecommended models:\n'));
-      for (const [provider, models] of Object.entries(RECOMMENDED_MODELS)) {
-        console.log(`  ${chalk.cyan(provider.padEnd(14))} ${models.join(', ')}`);
+    .description('List available models (fetches live from your provider)')
+    .action(async () => {
+      const config = getConfig();
+      if (!config.apiKey) {
+        console.log(chalk.dim('No API key configured. Showing defaults.\n'));
+        for (const [provider, models] of Object.entries(RECOMMENDED_MODELS)) {
+          console.log(`  ${chalk.cyan(provider.padEnd(14))} ${models.join(', ')}`);
+        }
+        console.log(chalk.dim('\nRun `founder config setup` to configure and fetch live models.'));
+        return;
+      }
+
+      console.log(chalk.dim(`Fetching models from ${config.provider}...\n`));
+      try {
+        const { fetchModelsForProvider } = await import('./ui/setup.js');
+        const models = await fetchModelsForProvider(config.provider, config.apiKey);
+        if (models.length > 0) {
+          console.log(chalk.bold(`Available ${config.provider} models:\n`));
+          for (const m of models) {
+            const current = config.model === m || (!config.model && m === DEFAULT_MODELS[config.provider]);
+            console.log(`  ${current ? chalk.green('→ ' + m) : '  ' + m}`);
+          }
+        } else {
+          console.log(chalk.dim('Could not fetch models. Showing defaults:\n'));
+          const models = RECOMMENDED_MODELS[config.provider] ?? [];
+          for (const m of models) {
+            console.log(`  ${m}`);
+          }
+        }
+      } catch {
+        for (const [provider, models] of Object.entries(RECOMMENDED_MODELS)) {
+          console.log(`  ${chalk.cyan(provider.padEnd(14))} ${models.join(', ')}`);
+        }
       }
       console.log();
     });
@@ -120,10 +149,45 @@ export function createProgram(): Command {
       await runUpdate();
     });
 
+  program
+    .command('completion [shell]')
+    .description('Output shell completion script (bash, zsh, fish)')
+    .action((shell?: string) => {
+      switch (shell) {
+        case 'bash':
+          process.stdout.write(generateBashCompletion());
+          break;
+        case 'zsh':
+          process.stdout.write(generateZshCompletion());
+          break;
+        case 'fish':
+          process.stdout.write(generateFishCompletion());
+          break;
+        default:
+          // Auto-detect shell
+          const sh = process.env.SHELL ?? '';
+          if (sh.includes('zsh')) {
+            process.stdout.write(generateZshCompletion());
+          } else if (sh.includes('fish')) {
+            process.stdout.write(generateFishCompletion());
+          } else {
+            process.stdout.write(generateBashCompletion());
+          }
+      }
+    });
+
   return program;
 }
 
 export async function run(argv: string[]): Promise<void> {
+  // Handle --completions before anything else (fast path for tab completion)
+  const completionsIdx = argv.indexOf('--completions');
+  if (completionsIdx !== -1) {
+    const line = argv.slice(completionsIdx + 1).join(' ');
+    handleCompletions(line);
+    return;
+  }
+
   // Non-blocking update check
   checkForUpdate().catch(() => {});
 
