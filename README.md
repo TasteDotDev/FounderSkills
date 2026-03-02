@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/banner.svg" alt="Founder Skills — 530 business frameworks as AI skills" width="100%"/>
+  <img src="assets/banner.svg" alt="Founder Skills — 568 business frameworks as AI skills" width="100%"/>
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 You know that thing where you're staring at a business problem at 2am and thinking *"there's probably a framework for this"*?
 
-There are **530** of them. And now they live inside your AI agent.
+There are **568** of them. And now they live inside your AI agent.
 
 **Founder Skills** gives you instant access to the best thinking from **Porter, Christensen, Reid Hoffman, Brian Balfour, Teresa Torres, Paul Graham**, and dozens more — as AI-powered skills that actually *apply* the frameworks to your specific situation. Not generic advice. Not Wikipedia summaries. Real analysis, with assumptions called out and ways to validate before committing.
 
@@ -107,7 +107,7 @@ Works with Anthropic, OpenAI, Google, OpenRouter. See [founder-cli](https://gith
 
 1. **Ask** — Describe any business problem in plain language
 2. **Diagnose** — Identifies what's actually going on (not what you think is going on)
-3. **Apply** — Selects and applies the right frameworks from 530 options
+3. **Apply** — Selects and applies the right frameworks from 568 options
 4. **Validate** — Surfaces assumptions and proposes concrete ways to test them
 
 Every answer ends with an assumptions table, a challenge section, and testable next steps. No hand-waving.
@@ -119,17 +119,18 @@ Every answer ends with an assumptions table, a challenge section, and testable n
 | **strategy** | 48 | Porter's Five Forces, Blitzscaling, Wardley Maps, Blue Ocean, Cold Start |
 | **marketing** | 54 | Product-Led Growth, Growth Loops, Dark Social, Build in Public, Viral Content |
 | **innovation** | 50 | Superhuman PMF Engine, Working Backwards, AI-First Product, RICE/ICE |
-| **finance** | 46 | Unit Economics, SAFE Notes, Growth Accounting, AI Pricing, Sequoia Deck |
+| **finance** | 50 | Unit Economics, SAFE Notes, Growth Accounting, AI Pricing, Sequoia Deck |
 | **communication** | 38 | Pyramid Principle, SCQA, Crisis Comms, Elevator Pitch, Storytelling |
-| **organization** | 40 | Async-First Culture, Team Topologies, McKinsey 7S, RACI, Kotter Change |
+| **organization** | 42 | Async-First Culture, Team Topologies, McKinsey 7S, RACI, Kotter Change |
 | **decision-making** | 39 | Cynefin, Pre-Mortem, Decision Matrix, OODA Loop, Six Thinking Hats |
 | **productivity** | 34 | GTD, Deep Work, OKRs, Sprint Planning, Atomic Habits, Eisenhower |
 | **leadership** | 33 | Founder Mode, Radical Candor, Servant Leadership, GROW Model |
 | **sales** | 30 | MEDDIC, Challenger Sale, Land and Expand, PLG Sales, Cold Email |
-| **operations** | 25 | Lean, Six Sigma, Theory of Constraints, Kaizen, Risk Register |
+| **operations** | 33 | Lean, Six Sigma, Theory of Constraints, Kaizen, Risk Register |
 | **design** | 27 | Design Thinking, UX Research, Service Blueprint, Accessibility |
 | **negotiation** | 22 | BATNA, Harvard Principled, Anchoring, ZOPA, Conflict Resolution |
 | **mental-models** | 23 | First Principles, Inversion, Second-Order Thinking, Circle of Competence |
+| **wellbeing** | 31 | Atomic Habits, Huberman, CBT, Stress, Burnout, Loneliness, Parenting, Anxiety |
 | **psychology** | 14 | Nudge Theory, Cognitive Bias Audit, Flow State, Habit Formation |
 
 Plus **`/founder`** — the meta-skill that diagnoses your problem and picks the right frameworks automatically.

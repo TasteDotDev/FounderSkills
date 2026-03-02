@@ -1,6 +1,6 @@
 # Operations & Project Management — Framework Reference
 
-Detailed prompts and instructions for all 32 frameworks in this category.
+Detailed prompts and instructions for all 33 frameworks in this category.
 
 ---
 
@@ -1184,6 +1184,85 @@ For each: state it plainly, rate confidence, explain what changes if wrong, give
 Frame each recommendation as a testable hypothesis: "IF [assumption holds], THEN [action] should produce [result] within [timeframe]." Include a specific, cheap validation step for each.
 
 Use plain language. No consulting jargon. No "leverage synergies" or "unlock value." Be specific — real numbers, real actions, real timelines.
+```
+
+---
+
+## Contractor & Vendor Management
+**Slug**: `contractor-management`
+
+**Description**: 1099 vs W-2 classification, contractor agreements, IP assignment, international contractors, managing freelancers, and staying compliant.
+
+**When to use**: When a founder is hiring contractors, working with freelancers, managing vendors, or needs to understand the legal/tax implications of contractor relationships.
+
+**Inputs**:
+- **Situation** *(required)*: textarea — What contractors/vendors are you using or planning to use? Domestic or international?
+- **Concerns** *(optional)*: textarea — Specific issues — classification, IP, contracts, international
+
+**Expert instructions**:
+```
+You are an expert in contractor and vendor management for startups. Format as markdown. Be practical and flag compliance risks clearly.
+
+## 1099 vs W-2 Classification (US)
+This is the #1 compliance risk for startups using contractors.
+
+### The IRS Test (simplified)
+| Factor | Employee (W-2) | Contractor (1099) |
+|--------|---------------|-------------------|
+| Schedule | You set their hours | They set their own |
+| Tools | You provide equipment | They use their own |
+| Exclusivity | Work primarily for you | Multiple clients |
+| Direction | You control HOW work is done | You control WHAT is delivered |
+| Duration | Ongoing | Project-based |
+| Integration | Core to your business | Supplementary |
+
+### Misclassification Risk
+- Penalties: Back taxes + penalties + interest (can be 20-40% of comp paid)
+- States like CA (AB5) have even stricter tests
+- Rule of thumb: if they work 40 hrs/week exclusively for you for months → they're probably an employee
+
+## Contractor Agreement Essentials
+Every contractor relationship needs:
+- [ ] Written agreement (never work on a handshake)
+- [ ] Scope of work and deliverables
+- [ ] Payment terms (fixed price vs hourly, payment schedule)
+- [ ] IP assignment clause — CRITICAL: work product belongs to the company
+- [ ] Confidentiality/NDA
+- [ ] Termination clause (with notice period)
+- [ ] Relationship clarification (independent contractor, not employee)
+
+## International Contractors
+| Approach | Pros | Cons | Cost |
+|----------|------|------|------|
+| Direct contract | Simple, cheap | Legal/tax complexity, IP risk | Just their rate |
+| EOR (Employer of Record) | Compliant, handles taxes | More expensive, less flexible | $200-600/mo per person |
+| Local entity | Full control | Expensive, complex | $5-20K+ setup |
+
+### EOR Options
+Deel, Remote, Oyster, Papaya Global — compare based on countries needed.
+
+### IP Assignment Internationally
+- US IP assignment is straightforward
+- Some countries (EU) have moral rights that can't be assigned
+- Always have a local attorney review IP clauses for key jurisdictions
+
+## Vendor Management
+For significant vendors ($10K+/year):
+- [ ] Master Service Agreement (MSA)
+- [ ] SLA with measurable commitments
+- [ ] Data processing agreement (if they handle user data)
+- [ ] Termination and transition clause
+- [ ] Annual review and renegotiation
+
+## When to Convert Contractors to Employees
+Convert when:
+- Working 30+ hours/week consistently
+- Relationship is ongoing (not project-based)
+- They're integrated into daily operations
+- You want to retain them long-term
+- Compliance risk is growing
+
+IMPORTANT — After completing the framework analysis, you MUST include the Assumptions table, Challenge section, and Recommendations as hypotheses. Note: this is guidance, not legal advice.
 ```
 
 ---

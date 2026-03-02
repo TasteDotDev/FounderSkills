@@ -14,8 +14,9 @@ You are a seasoned business strategist who works directly with founders and prod
 - If the user describes a problem without naming a framework, recommend the best framework(s) from this category and apply them
 - If invoked with no arguments, present the full list of available frameworks with one-line descriptions
 
-## Available frameworks (46)
+## Available frameworks (50)
 
+- `accounting-setup` — **Startup Accounting Setup**: Set up your books right from day one — chart of accounts, accounting software, bookkeeper vs fractional CFO, monthly close process, and when to upgrade.
 - `activity-based-costing` — **Activity-Based Costing**: Allocate overhead costs to products or services based on the activities that drive those costs for accurate profitability analysis.
 - `ai-pricing` — **AI Product Pricing Framework**: Design pricing for AI products across per-seat, per-output, usage-based, and outcome-based models with margin analysis for API costs.
 - `break-even-analysis` — **Break-Even Analysis**: Calculate the point where total revenue equals total costs to determine profitability thresholds.
@@ -32,6 +33,7 @@ You are a seasoned business strategist who works directly with founders and prod
 - `dividend-policy` — **Dividend Policy Analysis**: Evaluate and design optimal dividend policies by analyzing payout sustainability, shareholder returns, and capital allocation tradeoffs.
 - `dupont-analysis` — **DuPont Analysis**: Decompose Return on Equity into profitability, efficiency, and leverage components to pinpoint performance drivers.
 - `economic-moat` — **Economic Moat Analysis (Warren Buffett)**: Analyze a company's sustainable competitive advantages using Warren Buffett's Economic Moat framework to assess long-term defensibility.
+- `monthly-close` — **Monthly Financial Close & Review**: Run a monthly close process that gives you real numbers — P&L review, budget vs actual, cash position, KPI dashboard, and board-ready reporting.
 - `financial-benchmarking` — **Financial Benchmarking Analysis**: Compares a company's financial performance against industry benchmarks and best-in-class peers to identify areas of strength, weakness, and improvement opportunity.
 - `financial-due-diligence` — **Financial Due Diligence Checklist**: Conduct comprehensive financial due diligence for investments, acquisitions, or partnerships by systematically evaluating financial health and risks.
 - `financial-modeling` — **Financial Modeling Framework**: Build a structured financial model with projected income statement, balance sheet, and cash flow to forecast business performance.
@@ -45,6 +47,7 @@ You are a seasoned business strategist who works directly with founders and prod
 - `portfolio-analysis` — **Investment Portfolio Analysis**: Analyze an investment portfolio's allocation, diversification, risk-adjusted returns, and optimization opportunities.
 - `pricing-model` — **Pricing Model Analysis**: Analyze and design optimal pricing strategies by evaluating cost structures, competitive positioning, customer willingness to pay, and value metrics.
 - `profitability-analysis` — **Profitability Analysis Framework**: Analyze profitability across products, segments, and customers to identify margin drivers and optimize profit performance.
+- `revenue-targets` — **Revenue Target Setting**: Set monthly and quarterly revenue targets using bottoms-up forecasting, pipeline coverage ratios, and conversion math — not vibes.
 - `revenue-model` — **Revenue Model Design**: Design and evaluate revenue models to identify the most effective monetization strategy for your business.
 - `risk-return-analysis` — **Risk-Return Analysis**: Evaluate the risk-return tradeoff of investments, projects, or business decisions to optimize expected returns for a given level of risk.
 - `roi-calculator` — **ROI & Payback Period Calculator**: Calculate return on investment and payback period to evaluate the financial viability of a project or investment.
@@ -53,6 +56,7 @@ You are a seasoned business strategist who works directly with founders and prod
 - `sensitivity-analysis` — **Sensitivity Analysis / What-If**: Perform sensitivity and what-if analysis to understand how changes in key variables affect financial outcomes and business decisions.
 - `sequoia-pitch-deck` — **Sequoia Pitch Deck Format**: Structure your investor pitch using Sequoia Capital's proven 10-slide format: Purpose, Problem, Solution, Why Now, Market, Competition, Product, Business Model, Team, Financials.
 - `startup-financial-plan` — **Startup Financial Plan**: Build a comprehensive financial plan for startups covering revenue projections, expense forecasting, funding needs, and key milestones.
+- `startup-tax` — **Startup Tax Planning**: Navigate 83(b) elections, R&D tax credits, entity structure (LLC vs C-Corp vs S-Corp), state tax nexus, QSBS exclusion, and when to hire a CPA vs tax attorney.
 - `subscription-economics` — **Subscription Economics Model**: Model the economics of subscription-based businesses including recurring revenue dynamics, cohort behavior, and long-term value creation.
 - `treasury-management` — **Treasury Management Framework**: Designs a treasury strategy covering cash positioning, investment policy, banking relationships, and liquidity management for optimal capital efficiency.
 - `unit-economics` — **Unit Economics Analysis**: Analyze per-unit revenue and cost metrics to evaluate the fundamental profitability of a business model.

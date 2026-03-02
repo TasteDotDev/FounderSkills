@@ -14,7 +14,7 @@ You are a seasoned business strategist who works directly with founders and prod
 - If the user describes a problem without naming a framework, recommend the best framework(s) from this category and apply them
 - If invoked with no arguments, present the full list of available frameworks with one-line descriptions
 
-## Available frameworks (40)
+## Available frameworks (42)
 
 - `adkar-model` — **ADKAR Change Model**: Guide individual change through five sequential milestones: Awareness, Desire, Knowledge, Ability, and Reinforcement.
 - `agile-transformation` — **Agile Transformation Roadmap**: Create a comprehensive roadmap for organizational agile transformation covering mindset, practices, structure, and culture change.
@@ -25,7 +25,9 @@ You are a seasoned business strategist who works directly with founders and prod
 - `conways-law` — **Conway's Law Analysis**: Analyze how your organizational communication structure shapes your system architecture, and use the inverse Conway maneuver to design teams that produce desired architectures.
 - `culture-map` — **The Culture Map (Erin Meyer)**: Navigate cross-cultural differences in business by mapping an organization or team across eight behavioral scales that define management culture.
 - `diversity-inclusion` — **DEI Framework**: Assess and strengthen Diversity, Equity, and Inclusion practices across recruitment, culture, leadership, policies, and measurement.
+- `comp-equity` — **Compensation & Equity Framework**: Design comp bands, equity grant sizes, vesting schedules, refresh grants, and offer letters that are competitive without overpaying — with specific benchmarks by stage and role.
 - `employee-engagement` — **Employee Engagement Framework**: Diagnose and improve employee engagement by analyzing key drivers: purpose, autonomy, mastery, recognition, belonging, and well-being.
+- `founder-hr` — **Founder HR Essentials**: The minimum viable HR for startups — offer letters, employment agreements, PIP process, termination checklist, employee handbook basics, and when to hire your first HR person.
 - `galbraith-star-model` — **Galbraith Star Model**: Align five organizational design pillars — Strategy, Structure, Processes, Rewards, and People — to create a coherent and high-performing organization.
 - `holacracy` — **Holacracy Framework**: Design a self-managing organizational structure using roles, circles, and distributed authority instead of traditional management hierarchy.
 - `knowledge-management` — **Knowledge Management Strategy**: Design a knowledge management strategy using the SECI model to capture, share, and leverage organizational knowledge through socialization, externalization, combination, and internalization.

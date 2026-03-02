@@ -1,5 +1,5 @@
 ---
-description: "46 finance frameworks: Sequoia Deck, SAFE Notes, Growth Accounting, AI Pricing"
+description: "50 finance frameworks: Sequoia Deck, SAFE Notes, Growth Accounting, Tax Planning, Monthly Close"
 argument-hint: "[framework-name] [your business context]"
 ---
 

@@ -1,5 +1,5 @@
 ---
-description: "25 ops frameworks: Lean, Six Sigma, Theory of Constraints, Kaizen"
+description: "33 ops frameworks: Lean, Six Sigma, Theory of Constraints, Contractor Management"
 argument-hint: "[framework-name] [your business context]"
 ---
 

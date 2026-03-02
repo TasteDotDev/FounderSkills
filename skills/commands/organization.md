@@ -1,5 +1,5 @@
 ---
-description: "40 org frameworks: Async-First, Team Topologies, Kotter Change"
+description: "42 org frameworks: Async-First, Team Topologies, Comp & Equity, HR Essentials"
 argument-hint: "[framework-name] [your business context]"
 ---
 
