@@ -1,7 +1,7 @@
 ---
 name: communication
 description: "Apply communication frameworks — Pyramid Principle, SCQA, Storytelling, Elevator Pitch, Crisis Communication, and 33+ more — to craft compelling messages and communicate effectively."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Communication & Presentation

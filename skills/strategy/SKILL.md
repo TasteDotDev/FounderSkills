@@ -1,7 +1,7 @@
 ---
 name: strategy
 description: "Apply strategy frameworks — SWOT, Porter's Five Forces, BCG Matrix, Blue Ocean Strategy, Blitzscaling, Four Fits, Cold Start Problem, AI Go-To-Market, and 40+ more — to analyze competitive positioning, evaluate business models, and make strategic decisions."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Strategy & Competitive Analysis

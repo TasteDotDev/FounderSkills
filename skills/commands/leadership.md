@@ -1,6 +1,6 @@
 ---
 description: "33 leadership frameworks: Founder Mode, Radical Candor, GROW Model"
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 Read and follow the complete skill instructions in [leadership/SKILL.md](../leadership/SKILL.md).

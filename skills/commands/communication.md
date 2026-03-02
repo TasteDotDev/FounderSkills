@@ -1,6 +1,6 @@
 ---
 description: "38 comms frameworks: Pyramid Principle, SCQA, Elevator Pitch"
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 Read and follow the complete skill instructions in [communication/SKILL.md](../communication/SKILL.md).

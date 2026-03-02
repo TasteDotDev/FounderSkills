@@ -1,7 +1,7 @@
 ---
 name: marketing
 description: "Apply marketing and growth frameworks — Product-Led Growth, Build in Public, TikTok/Short-Form Growth, Viral Content, Community-Led Growth, Dark Social, Growth Loops, and 40+ more — to build go-to-market strategies, optimize funnels, and grow your business."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Marketing & Growth

@@ -1,7 +1,7 @@
 ---
 name: organization
 description: "Apply organizational frameworks — Async-First Culture, McKinsey 7S, Team Topologies, RACI Matrix, Kotter's 8-Step Change, and 35+ more — to design organizations and manage change."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Organization & People

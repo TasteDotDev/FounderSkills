@@ -1,7 +1,7 @@
 ---
 name: psychology
 description: "Apply behavioral science frameworks — Nudge Theory, Cognitive Bias Audit, Flow State Design, Habit Formation, Choice Architecture, and 10+ more — to design better experiences and drive behavior change."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Psychology & Behavioral Science

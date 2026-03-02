@@ -1,7 +1,7 @@
 ---
 name: innovation
 description: "Apply innovation frameworks — Superhuman PMF Engine, Continuous Discovery, Amazon Working Backwards, AI-First Product Design, AI Agent Framework, and 40+ more — to generate ideas, validate concepts, and build products."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Innovation & Product

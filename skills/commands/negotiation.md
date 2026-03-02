@@ -1,6 +1,6 @@
 ---
 description: "22 negotiation frameworks: BATNA, Harvard Method, Anchoring, ZOPA"
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 Read and follow the complete skill instructions in [negotiation/SKILL.md](../negotiation/SKILL.md).

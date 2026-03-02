@@ -1,6 +1,6 @@
 ---
 description: "34 productivity frameworks: GTD, Deep Work, OKRs, Atomic Habits"
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 Read and follow the complete skill instructions in [productivity/SKILL.md](../productivity/SKILL.md).

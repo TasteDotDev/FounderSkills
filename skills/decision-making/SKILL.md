@@ -1,7 +1,7 @@
 ---
 name: decision-making
 description: "Apply decision-making frameworks — Decision Matrix, Cynefin Framework, Pre-Mortem Analysis, Cost-Benefit Analysis, and 34+ more — to make better decisions under uncertainty."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Decision Making

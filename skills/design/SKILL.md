@@ -1,7 +1,7 @@
 ---
 name: design
 description: "Apply design frameworks — Design Thinking, UX Research, Service Design Blueprint, Accessibility Audit, and 22+ more — to design user-centered products and services."
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 # Design Thinking & UX

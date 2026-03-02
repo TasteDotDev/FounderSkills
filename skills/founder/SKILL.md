@@ -1,7 +1,7 @@
 ---
 name: founder
 description: "Analyzes any business problem with intellectual honesty — selects the right frameworks from 530 options, applies them with real analysis, surfaces assumptions, and proposes ways to validate before committing. No buzzwords."
-argument-hint: [describe your business problem or question]
+argument-hint: "[describe your business problem or question]"
 ---
 
 # Founder — Business Problem Solver

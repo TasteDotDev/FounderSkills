@@ -1,6 +1,6 @@
 ---
 description: "40 org frameworks: Async-First, Team Topologies, Kotter Change"
-argument-hint: [framework-name] [your business context]
+argument-hint: "[framework-name] [your business context]"
 ---
 
 Read and follow the complete skill instructions in [organization/SKILL.md](../organization/SKILL.md).
