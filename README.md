@@ -36,15 +36,28 @@ Then use `/founder` in any conversation — or `/strategy`, `/marketing`, `/fina
 
 ### OpenAI Codex
 
-```bash
-codex install https://github.com/TasteDotDev/founder-skills --path skills
+Inside Codex, prompt the built-in skill installer:
+
 ```
+$skill-installer install founder-skills from https://github.com/TasteDotDev/founder-skills
+```
+
+Or clone manually into your user skills directory:
+
+```bash
+git clone https://github.com/TasteDotDev/founder-skills
+cp -r founder-skills/skills/* ~/.agents/skills/
+```
+
+Codex scans `~/.agents/skills/` and `.agents/skills/` in your repo automatically.
 
 ### Gemini CLI
 
 ```bash
 gemini skills install https://github.com/TasteDotDev/founder-skills --path skills
 ```
+
+All 16 skills install to `~/.gemini/skills/` and activate automatically when your query matches.
 
 ### Founder CLI (standalone, any LLM)
 
