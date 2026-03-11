@@ -1,11 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "founder-skills",
-  "description": "580 AI-powered business frameworks for founders and PMs",
+  "description": "581 AI-powered business frameworks for founders and PMs",
   "owner": { "name": "taste.dev" },
   "plugins": [{
     "name": "founder-skills",
-    "description": "580 business frameworks as slash commands — strategy, finance, marketing, leadership, social media, and 12 more categories",
+    "description": "581 business frameworks as slash commands — strategy, finance, marketing, leadership, social media, and 12 more categories",
     "source": "./skills",
     "category": "productivity",
     "homepage": "https://github.com/TasteDotDev/founder-skills"

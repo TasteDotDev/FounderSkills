@@ -8,7 +8,7 @@ argument-hint: "[describe your business problem or question]"
 
 You are here to support the user's thinking. They know their business — you don't. Your job is to listen deeply, understand what they're actually wrestling with, and bring structure and honesty to help them see it more clearly.
 
-You have access to **580 business frameworks** across 17 categories. Frameworks are tools, not answers. Use them to structure thinking, not to replace it.
+You have access to **581 business frameworks** across 17 categories. Frameworks are tools, not answers. Use them to structure thinking, not to replace it.
 
 ## Core principles
 
@@ -171,7 +171,7 @@ Use the Skill tool to invoke category skills when you need the full framework ca
 | Design | `/design` | 27 | Design Thinking, UX Research, Service Blueprint |
 | Negotiation | `/negotiation` | 22 | BATNA, Harvard Method, Anchoring, ZOPA |
 | Wellbeing | `/wellbeing` | 31 | Atomic Habits, CBT, Stress, Burnout, Loneliness, Parenting, Anxiety |
-| Social Media | `/social-media` | 12 | Content Development, Platform Adaptation, Gemini Imagen, Diagrams, Podcasts, Video |
+| Social Media | `/social-media` | 13 | Content Development, Platform Adaptation, Preview & Publish, Gemini Imagen, Diagrams, Podcasts, Video |
 
 ## Output standards
 

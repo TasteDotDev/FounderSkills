@@ -1,6 +1,6 @@
 # Social Media Content Generator — Framework Reference
 
-Detailed prompts and instructions for all 12 frameworks in this category.
+Detailed prompts and instructions for all 13 frameworks in this category.
 
 ---
 
@@ -234,6 +234,250 @@ IMPORTANT — After completing the adaptations, you MUST include:
 - Is this content actually suited for all selected platforms, or should some be skipped?
 ## Recommendations
 Testable hypotheses for cross-platform performance.
+
+No consulting jargon. Be specific.
+```
+
+---
+
+## Content Preview & Publisher
+**Slug**: `preview-publisher`
+
+**Description**: Generate an interactive HTML preview page you open in your browser — see all platform versions side-by-side with phone/desktop mockups, copy content with one click, and jump directly to each platform's compose page to post.
+
+**When to use**: After content has been adapted for platforms. This is the final step before publishing — it generates a local HTML file you open in your browser to review everything and post with minimal friction.
+
+**Origin**: Content publishing workflow / developer tools
+
+**Inputs**:
+- **Content Folder** *(required)*: text — Path to the content folder (e.g., `content/2024-01-15-pricing-failures/`). The framework reads all platform-adapted files from this folder.
+- **Platforms** *(optional)*: text — Comma-separated list of platforms to include. Default: all platforms found in the folder.
+- **Context** *(optional)*: textarea — Scheduling preferences, any platform-specific notes...
+
+**Expert instructions**:
+```
+You are an expert in content publishing tooling. Generate a self-contained HTML preview page that lets the user review all their content versions and publish to each platform with minimal friction.
+
+Read all platform-adapted content files from the specified content folder and generate a COMPLETE, working HTML file at `[content-folder]/preview.html` that includes:
+
+(1) **Dashboard Layout** — a single page showing:
+- Content title and metadata at the top
+- Tab navigation for each platform (LinkedIn, X, Reddit, Blog, Substack, TikTok, Instagram, RedNote)
+- Each tab shows the platform-specific content in a realistic preview mockup
+
+(2) **Platform Preview Cards** — for each platform, render the content inside a device mockup:
+- LinkedIn: desktop feed card mockup (profile pic placeholder, post text, engagement bar)
+- X/Twitter: tweet/thread mockup with character counts per tweet
+- Reddit: post mockup with subreddit header
+- Instagram: phone frame with feed post or carousel preview
+- TikTok: phone frame with video script as caption overlay
+- Blog: clean article preview with header image placeholder
+- Substack: email newsletter preview
+- RedNote: phone frame with image-post layout
+
+(3) **One-Click Actions** — for each platform card, include buttons:
+- **"Copy"** button: copies the platform-specific text to clipboard with a "Copied!" confirmation. Use the Clipboard API.
+- **"Post"** button: opens the platform's compose page in a new tab. Use these direct compose URLs:
+  - LinkedIn: `https://www.linkedin.com/feed/?shareActive=true`
+  - X: `https://x.com/compose/post` (for single) or `https://typefully.com/` (for threads)
+  - Reddit: `https://www.reddit.com/submit?type=self`
+  - Substack: opens Substack dashboard
+  - Instagram / TikTok / RedNote: show "Open app" with deep link or QR code since these are mobile-first
+- **"Copy + Post"** button: copies to clipboard AND opens the compose page — so the user just pastes and hits send.
+
+(4) **Slide Preview** — if slides exist in the `slides/` subfolder, embed them inline with navigation arrows.
+
+(5) **Media Status** — checklist showing which media assets are ready:
+- [ ] Technical illustrations generated
+- [ ] Diagrams rendered
+- [ ] Slides exported
+- [ ] Podcast audio generated
+- [ ] Video script finalized
+
+(6) **Publishing Checklist** — track which platforms have been posted to:
+- Uses localStorage to persist checkbox state across page reloads
+- Shows "Published to 3/8 platforms" progress
+
+(7) **Character Counts & Warnings** — show live character counts with warnings:
+- X: red if > 280 chars per tweet
+- LinkedIn: yellow if > 3000 chars
+- Reddit title: red if > 300 chars
+- Instagram caption: yellow if > 2200 chars
+
+Generate a COMPLETE, self-contained HTML file. Requirements:
+- Single HTML file, no external dependencies (inline all CSS and JS)
+- Clean, modern dark theme UI (slate/zinc colors)
+- Responsive — works on both desktop and mobile browsers
+- All copy buttons must work (use navigator.clipboard.writeText)
+- All post links must open in new tabs
+- localStorage for publishing checklist persistence
+- Smooth tab transitions
+
+Here is the HTML structure to follow:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Preview — [TITLE]</title>
+    <style>
+        /* Dark theme, modern UI */
+        :root {
+            --bg: #0f172a;
+            --surface: #1e293b;
+            --surface-hover: #334155;
+            --border: #334155;
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+
+        /* Header */
+        .header { padding: 24px 32px; border-bottom: 1px solid var(--border); }
+        .header h1 { font-size: 24px; font-weight: 600; }
+        .header .meta { color: var(--text-muted); font-size: 14px; margin-top: 4px; }
+
+        /* Platform tabs */
+        .tabs { display: flex; gap: 2px; padding: 0 32px; background: var(--surface); border-bottom: 1px solid var(--border); overflow-x: auto; }
+        .tab { padding: 12px 20px; cursor: pointer; color: var(--text-muted); border-bottom: 2px solid transparent; white-space: nowrap; font-size: 14px; transition: all 0.2s; }
+        .tab:hover { color: var(--text); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+        .tab .status { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-left: 6px; }
+        .tab .status.published { background: var(--success); }
+        .tab .status.pending { background: var(--text-muted); }
+
+        /* Content panel */
+        .panel { display: none; padding: 32px; max-width: 800px; margin: 0 auto; }
+        .panel.active { display: block; }
+
+        /* Platform mockup card */
+        .mockup { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+        .mockup-header { padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+        .mockup-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--border); }
+        .mockup-body { padding: 20px; white-space: pre-wrap; line-height: 1.6; font-size: 15px; }
+        .mockup-footer { padding: 12px 16px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 13px; display: flex; justify-content: space-between; }
+
+        /* Action buttons */
+        .actions { display: flex; gap: 8px; margin-top: 16px; }
+        .btn { padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-primary:hover { filter: brightness(1.1); }
+        .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
+        .btn-secondary:hover { background: var(--surface-hover); }
+        .btn-success { background: var(--success); color: white; }
+        .btn .copied { display: none; }
+        .btn.is-copied .label { display: none; }
+        .btn.is-copied .copied { display: inline; }
+
+        /* Character count */
+        .char-count { font-size: 13px; margin-top: 8px; color: var(--text-muted); }
+        .char-count.warning { color: var(--warning); }
+        .char-count.danger { color: var(--danger); }
+
+        /* Publishing checklist */
+        .checklist { margin-top: 24px; padding: 20px; background: var(--surface); border-radius: 12px; border: 1px solid var(--border); }
+        .checklist h3 { font-size: 16px; margin-bottom: 12px; }
+        .checklist label { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; font-size: 14px; }
+        .progress-bar { height: 4px; background: var(--border); border-radius: 2px; margin-top: 12px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--success); border-radius: 2px; transition: width 0.3s; }
+
+        /* Phone mockup for mobile platforms */
+        .phone-frame { width: 375px; margin: 0 auto; border: 3px solid var(--border); border-radius: 40px; padding: 12px; background: #000; }
+        .phone-screen { border-radius: 28px; overflow: hidden; background: var(--surface); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>[CONTENT TITLE]</h1>
+        <div class="meta">[DATE] · [CTA TYPE] · [FORMAT TYPES]</div>
+    </div>
+
+    <div class="tabs">
+        <!-- One tab per platform with published/pending status dot -->
+    </div>
+
+    <!-- One panel per platform with mockup, content, copy/post buttons -->
+
+    <div class="checklist">
+        <h3>Publishing Progress</h3>
+        <!-- Checkboxes persisted via localStorage -->
+        <div class="progress-bar"><div class="progress-fill" style="width: 0%"></div></div>
+    </div>
+
+    <script>
+        // Copy to clipboard
+        function copyContent(platformId) {
+            const el = document.getElementById('content-' + platformId);
+            navigator.clipboard.writeText(el.textContent).then(() => {
+                const btn = document.getElementById('copy-btn-' + platformId);
+                btn.classList.add('is-copied');
+                setTimeout(() => btn.classList.remove('is-copied'), 2000);
+            });
+        }
+
+        // Open compose page + copy
+        function copyAndPost(platformId, composeUrl) {
+            copyContent(platformId);
+            window.open(composeUrl, '_blank');
+        }
+
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('panel-' + tab.dataset.platform).classList.add('active');
+            });
+        });
+
+        // Publishing checklist persistence
+        const STORAGE_KEY = 'published-[CONTENT-SLUG]';
+        function loadChecklist() {
+            const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+            document.querySelectorAll('.checklist input[type=checkbox]').forEach(cb => {
+                cb.checked = saved[cb.id] || false;
+                cb.addEventListener('change', saveChecklist);
+            });
+            updateProgress();
+        }
+        function saveChecklist() {
+            const state = {};
+            document.querySelectorAll('.checklist input[type=checkbox]').forEach(cb => {
+                state[cb.id] = cb.checked;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            updateProgress();
+        }
+        function updateProgress() {
+            const boxes = document.querySelectorAll('.checklist input[type=checkbox]');
+            const checked = [...boxes].filter(cb => cb.checked).length;
+            const pct = boxes.length ? (checked / boxes.length * 100) : 0;
+            document.querySelector('.progress-fill').style.width = pct + '%';
+            document.querySelector('.progress-text').textContent = checked + '/' + boxes.length + ' platforms';
+        }
+        loadChecklist();
+    </script>
+</body>
+</html>
+```
+
+Fill in ALL content from the content folder files. The preview page must work immediately when opened in a browser — no build step, no server, just double-click the HTML file.
+
+**Chrome Extension note**: For users who want deeper integration, mention that a companion Chrome extension could:
+- Auto-fill compose pages with the copied content
+- Track publishing status across platforms
+- Capture post URLs after publishing for the content index
+But the HTML preview page should work perfectly standalone without any extension.
+
+IMPORTANT — After completing, include Assumptions, Challenge, and Recommendations sections.
 
 No consulting jargon. Be specific.
 ```

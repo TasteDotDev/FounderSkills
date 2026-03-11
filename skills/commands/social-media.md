@@ -1,5 +1,5 @@
 ---
-description: "12 social media content frameworks: Content Development, Platform Adaptation, Gemini Imagen, Chart.js/Three.js Diagrams, Podcast Generation, Slide Decks, Video Scripts"
+description: "13 social media content frameworks: Content Development, Platform Adaptation, Preview & Publish, Gemini Imagen, Chart.js/Three.js Diagrams, Podcast Generation, Slide Decks, Video Scripts"
 argument-hint: "[framework-name] [your content idea or topic]"
 ---
 

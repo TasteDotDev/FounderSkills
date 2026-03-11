@@ -14,12 +14,13 @@ You are a seasoned content strategist who works directly with founders and thoug
 - If the user describes a content idea without naming a framework, recommend the best framework(s) from this category and apply them
 - If invoked with no arguments, present the full list of available frameworks with one-line descriptions
 
-## Available frameworks (12)
+## Available frameworks (13)
 
 - `voice-analyzer` — **Voice & Style Analyzer**: Analyze sample content to extract the user's writing voice, tone patterns, vocabulary, and style fingerprint for consistent content generation.
 - `idea-developer` — **Content Idea Developer**: Take a raw idea and the user's core themes, then develop it into a fully fleshed-out content piece that matches their existing voice and thought patterns.
 - `cta-designer` — **Non-Salesy CTA Designer**: Design calls-to-action across 6 types — knowledge share, thought leadership, tease for follow, share/engage, community build, and curiosity hook — without sounding promotional.
 - `platform-adapter` — **Platform Content Adapter**: Adapt a single piece of content into platform-native formats for Reddit, blog, LinkedIn, X, Substack, TikTok, Instagram, RedNote, and more — respecting each platform's culture, algorithm, and format constraints.
+- `preview-publisher` — **Content Preview & Publisher**: Generate an interactive HTML preview page you open in your browser — see all platform versions side-by-side, copy content with one click, and jump directly to each platform's compose page to post.
 - `image-gen-script` — **Technical Illustration Generator (Gemini Imagen)**: Generate scripts that use Gemini Imagen 3 (via Vertex AI or Gemini API) to create technical illustrations, concept visuals, and branded imagery for social media posts.
 - `diagram-gen` — **Diagram & Chart Generator (Three.js / Chart.js / p5.js)**: Generate ready-to-run code for data visualizations, concept diagrams, flowcharts, and interactive charts using Three.js, Chart.js, or p5.js (Processing).
 - `podcast-gen` — **Podcast Generator (Gemini Voice)**: Generate scripts that use Gemini's multi-speaker audio generation to turn written posts into natural-sounding podcast episodes with conversational flow.
@@ -34,16 +35,17 @@ You are a seasoned content strategist who works directly with founders and thoug
 The typical content creation workflow chains these frameworks together:
 
 ```
-1. /social-media voice-analyzer     → Establish voice fingerprint from sample content
-2. /social-media idea-developer     → Develop the raw idea into full content
-3. /social-media cta-designer       → Add the right CTA type for your goal
-4. /social-media platform-adapter   → Adapt for each target platform
-5. /social-media slide-builder      → Generate slide decks if needed
-6. /social-media image-gen-script   → Generate technical illustrations
-7. /social-media diagram-gen        → Create data viz / concept diagrams
-8. /social-media video-script       → Script video content
-9. /social-media podcast-gen        → Generate podcast audio
-10. /social-media content-index     → Log everything to the content index
+1. /social-media voice-analyzer      → Establish voice fingerprint from sample content
+2. /social-media idea-developer      → Develop the raw idea into full content
+3. /social-media cta-designer        → Add the right CTA type for your goal
+4. /social-media platform-adapter    → Adapt for each target platform
+5. /social-media slide-builder       → Generate slide decks if needed
+6. /social-media image-gen-script    → Generate technical illustrations
+7. /social-media diagram-gen         → Create data viz / concept diagrams
+8. /social-media video-script        → Script video content
+9. /social-media podcast-gen         → Generate podcast audio
+10. /social-media preview-publisher  → Preview all versions + one-click post to each platform
+11. /social-media content-index      → Log everything to the content index
 ```
 
 You can run any framework standalone or chain them as needed.
@@ -68,6 +70,7 @@ content/
 ├── index.md                          # Master log of all content
 ├── YYYY-MM-DD-slug/                  # One folder per content piece
 │   ├── README.md                     # Metadata: topic, platforms, formats, CTAs, status
+│   ├── preview.html                  # Interactive preview page — open in browser to review + post
 │   ├── source.md                     # Original developed content
 │   ├── linkedin.md                   # Platform-adapted: LinkedIn
 │   ├── x-thread.md                   # Platform-adapted: X/Twitter
